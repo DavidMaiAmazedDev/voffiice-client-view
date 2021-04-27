@@ -1,0 +1,30 @@
+.filter-container {
+  //width: 600px;
+  //background-color: #ffffff;
+  //border: #7f8387 solid 1px;
+  //border-radius: 4px;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  .side-bar-custom {
+    width: 120px;
+    //width: 25%;
+  }
+
+  .content-custom {
+    margin-left: 24px;
+    margin-top: 16px;
+    width: 500px;
+  }
+}
+
+//.numeric-input .ant-tooltip-inner {
+//  min-width: 32px;
+//  min-height: 37px;
+//}
+//
+//.numeric-input .numeric-input-title {
+//  font-size: 14px;
+//}
+
+

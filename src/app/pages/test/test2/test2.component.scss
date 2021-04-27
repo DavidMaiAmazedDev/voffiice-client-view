@@ -1,0 +1,90 @@
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+  z-index: 9;
+  box-shadow: 1px 3px 6px 0 rgba(32,33,36,0.10);
+  font-family: Tino-Regular;
+  font-size: 16px;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+
+  font-family: Open-Sans-Regular;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 64em) {
+  :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    top: 0px !important;
+  }
+}
+
+.table-wrapper-custom {
+  //max-height: 680000px;
+  //overflow: auto;
+}
+
+:host ::ng-deep .p-datatable .p-paginator {
+  position: -webkit-sticky;
+  position: fixed;
+  top: calc(100vh - 60px);
+  //right: calc(100vw - 1400px);
+  left: 40%;
+  //float: right;
+  z-index: 300;
+  box-shadow: 1px 3px 6px 0 rgba(32,33,36,0.10);
+}
+
+:host ::ng-deep .p-datatable .p-datatable-wrapper {
+  overflow-x: initial;
+}
+
+.search-icon-custom {
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+:host ::ng-deep .p-toolbar {
+    padding: 0;
+    border: none;
+    background: #ffffff;
+}
+
+.p-button-help {
+  background: var(--green-500) !important;
+  border: var(--green-500) 1px solid;
+  margin-left: 4px;
+
+  &:hover {
+    border: var(--green-500) 1px solid !important;
+    box-shadow: 0 0 0 1px var(--green-500), 0 0 2px 1px rgba(30, 140, 190, 0.8);
+  }
+}
+
+.p-button-danger {
+  background: red !important;
+  margin-right: 4px;
+}
+
+:host ::ng-deep .p-button-label {
+  font-family: Open-Sans-Regular;
+  font-size: 13px;
+}
+
+.btn-manipulation {
+  display: flex;
+  justify-content: flex-start;
+
+  .btn-edit {
+    margin-right: 32px;
+  }
+
+  .btn-remove {
+    border-radius: 50%;
+  }
+}
+

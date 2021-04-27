@@ -1,0 +1,103 @@
+::ng-deep .ant-table-wrapper {
+  .ant-pagination-item-link .ng-star-inserted {
+
+    svg {
+      margin-top: -6px;
+    }
+  }
+
+  ::ng-deep .ant-table-thead {
+    background-color: red !important;
+    > tr > th {
+      height: 32px;
+      padding: 4px;
+      background: #ffffff !important;
+    }
+  }
+
+  tbody{
+    tr {
+      td {
+        font-size: 14px;
+        line-height: 20px;
+        height: 5px;
+        padding: 4px;
+      }
+    }
+  }
+
+}
+
+.manipulation-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  .btn-view-more-columns {
+  background: #34c38f;
+
+}
+}
+
+.icon-edit {
+  &:hover {
+    cursor: pointer !important;
+  }
+}
+
+.icon-delete {
+  &:hover {
+    cursor: pointer !important;
+  }
+}
+
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 28px 16px 0;
+  float: left;
+}
+
+.header-menu {
+  line-height: 64px;
+}
+
+.outer-content {
+  padding: 0 50px;
+}
+
+.filter-template {
+  background-color: #1abc9c;
+  //::ng-deep .cdk-overlay-pane {
+  //  left: 262.547px !important;
+  //
+  //  .ant-popover-content {
+  //
+  //    .ant-popover-arrow {
+  //      left: 38% !important;
+  //      background: #50a5f1;
+  //    }
+  //  }
+  //}
+}
+
+.export {
+  //background-color: #34c38f;
+
+  button {
+    background-color: #34c38f;
+  }
+}
+
+//::ng-deep .cdk-overlay-pane {
+//  left: 262.547px !important;
+//
+//  .ant-popover-content {
+//
+//    .ant-popover-arrow {
+//      left: 38% !important;
+//      background: #50a5f1;
+//    }
+//  }
+//}

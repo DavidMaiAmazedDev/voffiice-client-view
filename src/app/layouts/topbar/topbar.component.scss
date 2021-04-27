@@ -1,0 +1,55 @@
+.top-bar-custom {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between;
+}
+
+.px-lg-2 {
+
+  .row no-gutters {
+
+    @side-bar {
+      width: 24px;
+      height: 24px;
+    }
+    > div {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+.side-bar-red {
+  width: 24px;
+  height: 24px;
+  background: red
+}
+
+.side-bar-purple {
+  background: purple
+}
+
+.side-bar-default {
+  background: #2a3042
+}
+
+.side-bar-orange {
+  background: orange;
+}
+
+.top-bar-orange {
+  width: 24px;
+  height: 24px;
+  background: orange;
+}
+
+.top-bar-default {
+  background: #ffffff;
+}
+
+.top-bar-purple {
+  background: purple;
+}
+
+.top-bar-red {
+  background: red;
+}

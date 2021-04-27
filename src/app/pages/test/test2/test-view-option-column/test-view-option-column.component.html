@@ -1,0 +1,17 @@
+
+<p-button label="View Columns" icon="pi pi-search" (click)="getDefaultDisplayColumn(listColumnNames) ;op.toggle($event)"></p-button>
+
+<p-overlayPanel #op [showCloseIcon]="false" [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'100ms'">
+  <ng-template pTemplate>
+    <div class="selection-container">
+      <ng-container *ngFor="let item of listColumnNames; let i = index;">
+        <div class="p-field-checkbox">
+<!--          [(ngModel)]="selectedCities"-->
+<!--          [(ngModel)]="defaultDisplayColumn.indexOf(item) !==-1"-->
+          <p-checkbox name="group1" value="{{item}}" [(ngModel)]="selectedColumns" (onChange)="upDateColumnViews()"></p-checkbox>
+          <label>{{item}}</label>
+        </div>
+      </ng-container>
+    </div>
+  </ng-template>
+</p-overlayPanel>

@@ -1,0 +1,18 @@
+
+::ng-deep .ant-modal-content {
+  min-width: 800px;
+}
+//[nz-modal] {
+//  min-width: 1000px;
+//}
+//[nz-form] {
+//  min-width: 1000px;
+//}
+
+//[nz-form]:not(.ant-form-inline):not(.ant-form-vertical) {
+//  max-width: 600px;
+//}
+
+[nz-form] .ant-form-item {
+  width: 85% !important;
+}

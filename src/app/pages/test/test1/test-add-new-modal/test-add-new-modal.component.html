@@ -1,0 +1,59 @@
+<nz-modal
+  nzTitle="Vertically centered modal dialog"
+  [(nzVisible)]="isAddNew || isEdit"
+  nzCentered
+  (nzOnCancel)="close()"
+  (nzOnOk)="submit()"
+>
+  <ng-container *nzModalContent>
+    <!--    (ngSubmit)="submitForm(validateForm.value)-->
+    <form nz-form [nzAutoTips]="autoTips" [formGroup]="validateForm" [nzLayout]="'horizontal'">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>Username</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="name" placeholder="name" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>Age</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <input nz-input formControlName="age" placeholder="age" />
+        </nz-form-control>
+      </nz-form-item>
+
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>address</nz-form-label>
+        <nz-form-control [nzSpan]="20" nzValidatingTip="Validating...">
+          <input nz-input formControlName="address" placeholder="address" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>Date Of Brith</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-date-picker style="width: 100% !important;" formControlName="dob"></nz-date-picker>
+          <!--          <input nz-input formControlName="dob" placeholder="dob" />-->
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>job</nz-form-label>
+        <nz-form-control [nzSpan]="16" nzValidatingTip="Validating...">
+          <input nz-input formControlName="job" placeholder="async validate try to write JasonWood" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>Salary</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="salary" placeholder="age" />
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+
+  </ng-container>
+</nz-modal>
+
