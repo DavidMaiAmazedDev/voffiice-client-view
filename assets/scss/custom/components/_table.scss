@@ -1,6 +1,6 @@
-// 
+//
 // _table.scss
-// 
+//
 
 .table {
   th {
@@ -12,6 +12,16 @@
 .table-centered {
   td,th {
       vertical-align: middle !important;
+      text-align: center !important;
+  }
+  th {
+    height: 32px !important;
+    max-height: 32px !important;
+  }
+
+  td {
+    height: 50px !important;
+    max-height: 50px !important;
   }
 }
 

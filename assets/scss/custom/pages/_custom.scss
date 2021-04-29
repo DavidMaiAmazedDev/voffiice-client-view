@@ -9,3 +9,68 @@
 
   }
 }
+
+.p-col-8 {
+  width: auto !important;
+}
+
+.p-button-custom {
+  height: 100% !important;
+}
+
+.popup-custom {
+  font-family: Open-Sans-Regular;
+  font-size: 14px;
+
+  input {
+    font-family: Open-Sans-Regular;
+    font-size: 14px;
+  }
+
+  button {
+    font-family: Open-Sans-Regular;
+    font-size: 14px;
+  }
+}
+
+.container-custom {
+  margin-top: 36px;
+}
+
+.c-ml-4 {
+  margin-left: 4px !important;
+}
+
+.c-ml-8 {
+  margin-left: 8px !important;;
+}
+
+.c-ml-16 {
+  margin-left: 16px !important;;
+}
+
+.c-mr-4 {
+  margin-right: 4px !important;;
+}
+
+.c-mr-8 {
+  margin-right: 8px !important;;
+}
+
+.c-mr-16 {
+  margin-right: 16px !important;;
+}
+
+.c-fs-1 {
+  font-size: 1rem !important;
+}
+
+.c-loading-icon {
+  width: 80vw !important;
+  //text-align: center !important;
+
+  i {
+    font-size: 2rem !important;
+  }
+
+}

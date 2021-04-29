@@ -40,7 +40,7 @@
   bottom: 0;
   margin-top: 0;
   position: fixed;
-  top: $header-height;
+  top: 0;
   box-shadow: $box-shadow;
 }
 
@@ -109,6 +109,7 @@
 
       .badge {
         margin-top: 4px;
+        height: 16px;
       }
 
       ul.sub-menu {
@@ -171,13 +172,24 @@
     display: none;
   }
 
+  #page-topbar {
+    width: 100% !important;
+    left: 0px !important;
+  }
+
   .main-content {
     margin-left: 0 !important;
   }
 
+
   body.sidebar-enable {
     .vertical-menu {
       display: block;
+    }
+
+    #page-topbar {
+      width: 100%;
+      left: 0px;
     }
   }
 }
@@ -191,6 +203,11 @@
 
   .navbar-brand-box {
     width: $sidebar-collapsed-width !important;
+  }
+
+  #page-topbar {
+    width: calc(100% - 70px);
+    left: $sidebar-collapsed-width;
   }
 
   .logo {
@@ -413,6 +430,10 @@ body[data-sidebar="dark"] {
   // Enlarge menu
   &.vertical-collpsed {
     min-height: 1200px;
+    #page-topbar {
+      width: calc(100% - 70px);
+      left: $sidebar-collapsed-width !important;
+    }
 
     // Side menu
     .vertical-menu {
