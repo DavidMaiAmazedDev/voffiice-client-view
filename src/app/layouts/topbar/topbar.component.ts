@@ -41,8 +41,8 @@ export class TopbarComponent implements OnInit {
   ];
 
   openMobileMenu: boolean;
-  backgroundColor = '#ffffff';
-  // backgroundColor = '#2a3042';
+  // backgroundColor = '#ffffff';
+  backgroundColor = '#2a3042';
   sidebarColor = '#2a3042';
 
 
@@ -62,10 +62,13 @@ export class TopbarComponent implements OnInit {
     this.cookieValue = this._cookiesService.get('lang');
     const val = this.listLang.filter(x => x.lang === this.cookieValue);
     this.countryName = val.map(element => element.text);
+    console.log(val);
     if (val.length === 0) {
       if (this.flagvalue === undefined) { this.valueset = 'assets/images/flags/us.jpg'; }
+      this.languageService.setLanguage('en');
     } else {
       this.flagvalue = val.map(element => element.flag);
+      this.languageService.setLanguage(this.cookieValue);
     }
   }
 
@@ -87,7 +90,6 @@ export class TopbarComponent implements OnInit {
    * Toggle the menu bar when having mobile screen
    */
   toggleMobileMenu(event: any) {
-    console.log('sdklfj')
     event.preventDefault();
     this.mobileMenuButtonClicked.emit();
   }

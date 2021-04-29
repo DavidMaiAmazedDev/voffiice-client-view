@@ -27,14 +27,18 @@
 }
 
 :host ::ng-deep .p-datatable .p-paginator {
-  position: -webkit-sticky;
-  position: fixed;
-  top: calc(100vh - 60px);
-  //right: calc(100vw - 1400px);
-  left: 40%;
-  //float: right;
-  z-index: 300;
-  box-shadow: 1px 3px 6px 0 rgba(32,33,36,0.10);
+
+  span {
+    //font-family: Open-Sans-Regular;
+    font-size: 14px;
+  }
+  //position: -webkit-sticky;
+  //position: fixed;
+  //top: calc(100vh - 60px);
+  ////right: calc(100vw - 1400px);
+  //left: 40%;
+  //z-index: 300;
+  //box-shadow: 1px 3px 6px 0 rgba(32,33,36,0.10);
 }
 
 :host ::ng-deep .p-datatable .p-datatable-wrapper {
@@ -54,20 +58,15 @@
     background: #ffffff;
 }
 
-.p-button-help {
-  background: var(--green-500) !important;
-  border: var(--green-500) 1px solid;
-  margin-left: 4px;
-
-  &:hover {
-    border: var(--green-500) 1px solid !important;
-    box-shadow: 0 0 0 1px var(--green-500), 0 0 2px 1px rgba(30, 140, 190, 0.8);
-  }
-}
-
 .p-button-danger {
   background: red !important;
   margin-right: 4px;
+  width: auto;
+}
+
+.p-button-success {
+  width: auto;
+  height: auto;
 }
 
 :host ::ng-deep .p-button-label {
@@ -77,7 +76,7 @@
 
 .btn-manipulation {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 
   .btn-edit {
     margin-right: 32px;
@@ -87,4 +86,24 @@
     border-radius: 50%;
   }
 }
+
+.temp-right-custom {
+  display: inline-flex;
+  padding-left: 8px;
+  justify-content: flex-end !important;
+}
+
+.temp-left-custom {
+  display: inline-flex;
+}
+
+@media (max-width: 992px) {
+  .temp-right-custom {
+    display: inline-flex;
+    padding-left: 8px;
+    justify-content: flex-start !important;
+  }
+}
+
+
 

@@ -1,63 +1,62 @@
 <notifier-container></notifier-container>
-<div class="container-fluid" [ngStyle]="{'margin-top': '36px'}">
-<!--  <app-page-title [title]="breadCrumbItems[1].label" [breadcrumbItems]="breadCrumbItems"></app-page-title>-->
-  <p-toolbar styleClass="p-mb-4">
-    <ng-template pTemplate="left">
-      <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedElement || !selectedElement.length"></button>
-      <app-test-view-option-column [listColumnNames]="listColumnNames" [defaultDisplayColumn]="defaultDisplayColumn" (changeColumnViews)="onChangeColumnView($event)"></app-test-view-option-column>
-      <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="doExport()"></button>
-    </ng-template>
+<div class="container-fluid container-custom">
+  <!--  <app-page-title [title]="breadCrumbItems[1].label" [breadcrumbItems]="breadCrumbItems"></app-page-title>-->
 
-
-    <ng-template pTemplate="right">
-      <span class="p-input-icon-right" style="margin-right: 4px;">
-      <i class="pi pi-search search-icon-custom" (click)="overallSearch.trim() !== '' ? setParams() : ''"></i>
-      <input type="text" pInputText placeholder="Search" [(ngModel)]="overallSearch" (keyup.enter)="setParams()"/>
-      </span>
+  <div class="p-fluid p-formgrid p-grid" >
+    <div class="p-field p-col-12 p-md-6 temp-left-custom">
+      <button pButton pRipple label="{{'btn.delete' | translate}}" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedElement || !selectedElement.length"></button>
+        <app-test-view-option-column [listColumnNames]="listColumnNames" [defaultDisplayColumn]="defaultDisplayColumn" (changeColumnViews)="onChangeColumnView($event)"></app-test-view-option-column>
+      <button pButton pRipple label="{{'btn.export' | translate}}" icon="pi pi-upload" class="p-button-success c-ml-4" (click)="doExport()"></button>
+    </div>
+    <div class="p-field p-col-12 p-md-6 temp-right-custom">
+      <button pButton pRipple label="{{'btn.new' | translate}}" icon="pi pi-plus" class="p-button-success c-mr-4" (click)="openNew()"></button>
       <app-test-filter-modal [valueFilter]="valueFilter" (searchRequest)="doSearch($event)"></app-test-filter-modal>
-      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-ml-1" (click)="openNew()"></button>
-    </ng-template>
-
-  </p-toolbar>
-
-<!--  [scrollable]="true" scrollHeight="620px"-->
+      <span class="p-input-icon-right c-ml-4" [ngStyle]="{'max-width': '40%'}">
+              <i class="pi pi-search search-icon-custom" (click)="overallSearch.trim() !== '' ? setParams() : ''"></i>
+              <input type="text" pInputText placeholder="{{'btn.searchPlaceholder' | translate}}" [(ngModel)]="overallSearch" (keyup.enter)="setParams()"/>
+        </span>
+    </div>
+  </div>
   <div class="table-wrapper-custom">
-    <p-table [resizableColumns]="true" styleClass="p-datatable-sm"
-             [responsive]="true"
+    <p-table [resizableColumns]="true" styleClass="p-datatable-sm table-centered"
              [columns]="defaultDisplayColumn"
+             [responsive]="true"
              [reorderableColumns]="true"
              #dt [value]="listOfData"
              [lazy]="true"
              [paginator]="true" [rows]="pageOption[0]" [totalRecords]="totalRecords"
              (onLazyLoad)="sortFunction($event)"
-             pageLinks="3"
              [showCurrentPageReport]="true"
              [(selection)]="selectedElement" [rowHover]="true" dataKey="id"
-             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="pageOption">
-<!--      <ng-template pTemplate="caption">-->
-<!--        <div class="p-d-flex p-ai-center p-jc-between">-->
-<!--          &lt;!&ndash;        <h5 class="p-m-0">Manage Products</h5>&ndash;&gt;-->
-<!--          <span class="p-input-icon-left">-->
-<!--                      <i class="pi pi-search"></i>-->
-<!--                      <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />-->
-<!--                  </span>-->
-<!--        </div>-->
-<!--      </ng-template>-->
+             currentPageReportTemplate="{{'component.test2.page.paginatorContent' | translate : {first: (pageIndex-1) * pageSize + 1 , last: pageIndex * pageSize , totalRecords: totalRecords} }}"
+             [rowsPerPageOptions]="pageOption">
+<!--      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"-->
+      <!--      <ng-template pTemplate="caption">-->
+      <!--        <div class="p-d-flex p-ai-center p-jc-between">-->
+      <!--          &lt;!&ndash;        <h5 class="p-m-0">Manage Products</h5>&ndash;&gt;-->
+      <!--          <span class="p-input-icon-left">-->
+      <!--                      <i class="pi pi-search"></i>-->
+      <!--                      <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />-->
+      <!--                  </span>-->
+      <!--        </div>-->
+      <!--      </ng-template>-->
 
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 3rem">
+          <th [ngStyle]="{'width': '3rem'}">
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
           <th pResizableColumn>STT</th>
           <ng-container *ngFor="let col of defaultDisplayColumn">
-            <th pResizableColumn pReorderableColumn pSortableColumn="{{col}}">{{col}} <p-sortIcon field="{{col}}"></p-sortIcon></th>
+            <th pResizableColumn pReorderableColumn pSortableColumn="{{col}}">{{col}}
+              <p-sortIcon field="{{col}}"></p-sortIcon>
+            </th>
           </ng-container>
           <th pResizableColumn>action</th>
         </tr>
         <tr *ngIf="isLoading">
-          <div style="width: 80vw; text-align: center;">
-            <i class="pi pi-spin pi-spinner" style="font-size: 2rem; text-align: center"></i>
+          <div class="c-loading-icon">
+            <i class="pi pi-spin pi-spinner"></i>
           </div>
         </tr>
       </ng-template>
@@ -67,7 +66,7 @@
           <td>
             <p-tableCheckbox [value]="data"></p-tableCheckbox>
           </td>
-          <td>{{(pageIndex -1) * pageSize + i + 1}}</td>
+          <td>{{((pageIndex - 1) * pageSize) + i + 1 - ((pageIndex -1) * pageSize)}}</td>
           <ng-container *ngFor="let col of defaultDisplayColumn">
             <td *ngIf="col !== 'dob'">{{ data[col] }}</td>
             <td *ngIf="col === 'dob'">{{ data[col] | date : 'dd/mm/yyyy'}}</td>
@@ -75,10 +74,10 @@
           <td>
             <div class="btn-manipulation">
               <div class="btn-edit cursor-pointer" (click)="editRecord(data)">
-                <i class="pi pi-pencil" style="font-size: 1rem"></i>
+                <i class="pi pi-pencil c-fs-1"></i>
               </div>
               <div class="btn-remove cursor-pointer" (click)="deleteSingleRecord(data.id)">
-                <i class="pi pi-trash" style="font-size: 1rem"></i>
+                <i class="pi pi-trash c-fs-1"></i>
               </div>
             </div>
           </td>
@@ -87,8 +86,9 @@
     </p-table>
   </div>
 
-  </div>
+</div>
 <app-test2-add-new-modal
-  *ngIf="isShowAddNewModal || isEdit" [testDataElement]="testDataElement"  [isShowAddNewModal]="isShowAddNewModal" [isEdit]="isEdit" (hide)="onHideNew()" (newData)="onAddNew()"
-  ></app-test2-add-new-modal>
+  *ngIf="isShowAddNewModal || isEdit" [testDataElement]="testDataElement" [isShowAddNewModal]="isShowAddNewModal"
+  [isEdit]="isEdit" (hide)="onHideNew()" (newData)="onAddNew()"
+></app-test2-add-new-modal>
 

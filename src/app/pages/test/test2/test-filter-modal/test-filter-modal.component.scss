@@ -1,9 +1,12 @@
 .filter-container {
-  width: 1000px !important;
-
+  width: 750px !important;
   .btn-manipulation {
     text-align: center;
-    margin-top: 24px;
+    margin-top: 8px;
+
+    button {
+      width: 20%;
+    }
 
     .search {
       margin-right: 8px;

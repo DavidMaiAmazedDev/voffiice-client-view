@@ -62,7 +62,11 @@ export function getIndexBy(array: Array<{}>, { name, value }): number {
   }
   return -1;
 }
-export function DeepCopy(object: any): string {
+export function DeepCopyObject(object: any): any {
   return JSON.stringify(object);
+}
+
+export function DeepCopyArray(object: any): any {
+  return JSON.parse(JSON.stringify(object));
 }
 

@@ -4,12 +4,12 @@ import {TestService} from '../../../core/services/test.service';
 import {TestExperimentalService} from '../../../core/services/testExperimental.service';
 import {APP_CONFIG} from '../../../core/interfaces/config-token.interface';
 import {TestService123} from '../../../services/bases/test.service';
-import {DeepCopy} from '../../../core/helpers/utils';
 import {Filter, Sort, TestDataRequestInterface} from '../../../core/interfaces/test.dataRequest.interface';
 import {NzTableSortOrder} from 'ng-zorro-antd/table';
 import {TestModel, TestSearchModel} from '../../../core/models/test-model';
 import {ExportService} from '../../../core/services/export.service';
 import {fakeData} from '../../../core/helpers/fakeData';
+import {DeepCopyArray} from '../../../core/helpers/utils';
 export function testFactory(injector: Injector): TestExperimentalService | TestService {
   return injector.get(APP_CONFIG).experimentalEnabled ? injector.get(TestExperimentalService) : injector.get(TestService);
 }
@@ -161,7 +161,7 @@ getColumnNames(data: any) {
     // this.listColumnNames = JSON.parse(DeepCopy(Object.keys(data[0])));
     // this.listColumnNames = this.listColumnNames.filter(el => el !== 'id');
     // this.getDefaultDisplayColumn(this.columnObjects);
-    this.listColumnNames = JSON.parse(DeepCopy(Object.keys(data[0])));
+    this.listColumnNames = DeepCopyArray(Object.keys(data[0]));
     this.listColumnNames = this.listColumnNames.filter(el => el !== 'id');
     this.getDefaultDisplayColumn(this.listColumnNames);
 }
@@ -203,9 +203,7 @@ setParams() {
  //  }
 
   editRecord(data) {
-    console.log(data);
-    this.testDataElement = JSON.parse(DeepCopy(data));
-    console.log(this.testDataElement);
+    this.testDataElement = DeepCopyArray(data);
     this.isAddNew = false;
     this.isEdit = true;
   }
@@ -291,7 +289,7 @@ setParams() {
 
   displayColumn(listChecked: any) {
     // this.listColumnNames = JSON.parse(DeepCopy(listChecked));
-    this.defaultDisplayColumn = JSON.parse(DeepCopy(listChecked));
+    this.defaultDisplayColumn = DeepCopyArray(listChecked);
     console.log(listChecked);
   }
 

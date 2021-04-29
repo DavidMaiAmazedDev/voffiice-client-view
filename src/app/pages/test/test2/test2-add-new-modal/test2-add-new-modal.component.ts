@@ -12,23 +12,29 @@ import {DatePipe} from '@angular/common';
 })
 
 export class Test2AddNewModalComponent implements OnInit {
-  validateForm: FormGroup;
+  testAddNewForm: FormGroup;
   @Input() testDataElement: TestModel;
   @Input() isEdit: boolean;
   @Output() newData = new EventEmitter<TestModel>();
   @Input() isShowAddNewModal: boolean;
   @Output() hide = new EventEmitter();
   isSubmit = false;
+  minLengthName = 6;
+  maxLengthName = 50;
+  minAge = 10;
+  maxAge = 50;
+  minSalary = 100;
+  maxSalary = 10000;
   constructor(private fb: FormBuilder, private customValidator: CustomValidationService, private datePipe: DatePipe) {
 
     // const {required, maxLength, minLength, age } = MyValidators;
-    this.validateForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(6), Validators.max(50)]],
-      age: ['', [Validators.required, this.customValidator.numberValidator(), Validators.min(10), Validators.max(100)]],
+    this.testAddNewForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(this.minLengthName), Validators.max(this.maxLengthName)]],
+      age: ['', [Validators.required, this.customValidator.numberValidator(), Validators.min(this.minAge), Validators.max(this.maxAge)]],
       address: ['', [Validators.required]],
       dob: ['', [Validators.required, this.customValidator.dateValidator()]],
       job: ['', [Validators.required]],
-      salary: ['', [Validators.required, this.customValidator.numberValidator(), Validators.min(100), Validators.max(10000)]]
+      salary: ['', [Validators.required, this.customValidator.numberValidator(), Validators.min(this.minSalary), Validators.max(this.maxAge)]]
     });
   }
 
@@ -41,15 +47,15 @@ export class Test2AddNewModalComponent implements OnInit {
   }
 
   get f() {
-    return this.validateForm.controls;
+    return this.testAddNewForm.controls;
   }
 
   setFormData(data: TestModel) {
     if (data !== null){
       // data.dob = new Date(data.dob);
       // console.log(this.validateForm);
-      this.validateForm.patchValue(data);
-      this.validateForm.get('dob').setValue(new Date(data.dob));
+      this.testAddNewForm.patchValue(data);
+      this.testAddNewForm.get('dob').setValue(new Date(data.dob));
     }
   }
 
@@ -59,16 +65,15 @@ export class Test2AddNewModalComponent implements OnInit {
 
   submit() {
     this.isSubmit = true;
-    console.log(this.testDataElement);
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[key].markAsDirty();
-      this.validateForm.controls[key].updateValueAndValidity();
+    for (const key in this.testAddNewForm.controls) {
+      this.testAddNewForm.controls[key].markAsDirty();
+      this.testAddNewForm.controls[key].updateValueAndValidity();
     }
     // console.log(this.validateForm);
-    if (this.validateForm.status === 'INVALID') {
+    if (this.testAddNewForm.status === 'INVALID') {
       return;
     }
-    this.newData.emit(this.validateForm.value);
+    this.newData.emit(this.testAddNewForm.value);
   }
 
 }

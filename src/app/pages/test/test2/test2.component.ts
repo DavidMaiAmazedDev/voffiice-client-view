@@ -5,11 +5,10 @@ import {CopierService} from '../../../core/services/copier.service';
 import {PrimeNGConfig} from 'primeng/api';
 import {CustomerService} from '../../../core/services/customer.service';
 import {Filter, Sort, TestDataRequestInterface} from '../../../core/interfaces/test.dataRequest.interface';
-import {DeepCopy} from '../../../core/helpers/utils';
+import {DeepCopyArray} from '../../../core/helpers/utils';
 import {TestService123} from '../../../services/bases/test.service';
 import {TestModel, TestSearchModel} from '../../../core/models/test-model';
 import {ExportService} from '../../../core/services/export.service';
-import {fakeData} from '../../../core/helpers/fakeData';
 
 @Component({
   selector: 'app-test2',
@@ -94,7 +93,7 @@ export class Test2Component implements OnInit {
   }
 
   getColumnNames(data: any) {
-    this.listColumnNames = JSON.parse(DeepCopy(Object.keys(data[0])));
+    this.listColumnNames = DeepCopyArray(Object.keys(data[0]));
     this.listColumnNames = this.listColumnNames.filter(el => el !== 'id');
     this.getDefaultDisplayColumn(this.listColumnNames);
   }
@@ -104,7 +103,7 @@ export class Test2Component implements OnInit {
   }
 
   editRecord(data: any) {
-    this.testDataElement = JSON.parse(DeepCopy(data));
+    this.testDataElement = DeepCopyArray(data);
     this.isShowAddNewModal = false;
     this.isEdit = true;
   }
@@ -191,6 +190,6 @@ export class Test2Component implements OnInit {
   }
 
   doExport() {
-    this.exportService.exportAsExcelFile(fakeData, 'sample');
+    // this.exportService.exportAsExcelFile(fakeData, 'sample');
   }
 }

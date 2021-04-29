@@ -21,6 +21,7 @@ import { TestFilterModalComponent } from './test2/test-filter-modal/test-filter-
 import { Test2AddNewModalComponent } from './test2/test2-add-new-modal/test2-add-new-modal.component';
 import {NotifierModule} from 'angular-notifier';
 import {CUSTOM_NOTIFIER_OPTIONS} from '../../core/helpers/utils';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [Test1Component, Test2Component, TestFilterComponent, TestAddNewModalComponent, TestViewOptionColumnComponent, TestFilterModalComponent, Test2AddNewModalComponent],
@@ -37,6 +38,7 @@ import {CUSTOM_NOTIFIER_OPTIONS} from '../../core/helpers/utils';
         NgbDropdownModule,
         SharedModule,
         SharedPipesModule,
+        TranslateModule,
     ]
 })
 export class TestModule { }

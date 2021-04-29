@@ -1,5 +1,5 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {DeepCopy} from '../../../../core/helpers/utils';
+import {DeepCopyArray} from '../../../../core/helpers/utils';
 
 @Component({
   selector: 'app-test-view-option-column',
@@ -26,7 +26,7 @@ export class TestViewOptionColumnComponent implements OnInit {
 
   getDefaultDisplayColumn(data: string[]) {
     if (this.isFirstToCome){
-      this.selectedColumns = JSON.parse(DeepCopy(this.defaultDisplayColumn));
+      this.selectedColumns = DeepCopyArray(this.defaultDisplayColumn);
     } else {
       this.isFirstToCome = false;
     }

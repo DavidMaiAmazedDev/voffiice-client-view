@@ -13,3 +13,33 @@
   //overflow: visible;
   //z-index: 999;
 }
+
+.custom-style {
+ width: 100vw !important;
+  height: 100vh !important;
+  background: red;
+}
+
+.p-dialog-custom {
+
+
+  .p-dialog-mask {
+    z-index: 1002;
+    background: #34c38f;
+  }
+}
+
+::ng-deep .p-dialog {
+  z-index: 1002;
+  background: #34c38f;
+}
+
+@media (max-width: 600px) {
+
+  ::ng-deep .p-dialog-mask {
+    z-index: 1002;
+  }
+  ::ng-deep .p-dialog {
+    width: 90vw;
+  }
+}

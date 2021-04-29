@@ -1,35 +1,35 @@
-<p-button label="Filter" icon="pi pi-filter" (click)="op.toggle($event)"></p-button>
+<p-button label="{{'btn.filter' | translate}}" icon="pi pi-filter" (click)="op.toggle($event)" styleClass="p-button-custom"></p-button>
 <p-overlayPanel #op [showCloseIcon]="false" [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'100ms'" [dismissable]="true">
   <ng-template pTemplate>
-    <div class="filter-container">
+    <div class="filter-container popup-custom">
       <div class="row">
         <div class="col-3">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item nav-custom" *ngFor="let item of menuItems; let i = index;">
-              <a class="nav-link" [class.active-nav]="item.active" (click)="getMenuItem(item)">{{item.name}}</a>
+              <a class="nav-link" [class.active-nav]="item.active" (click)="getMenuItem(item)">{{'component.test2.modal.filter.menu.' + item.name | translate}}</a>
             </li>
           </ul>
         </div>
         <p-divider layout="vertical"></p-divider>
         <div class="col-8">
           <div class="p-fluid p-formgrid p-grid one-row">
-            <div class="p-field p-col">
-              <label for="name">Name</label>
+            <div class="p-field p-col-12 p-md-6">
+              <label for="name">{{'component.test2.modal.name' | translate}}</label>
               <input [(ngModel)]="valueFilter.name" id="name" type="text" pInputText>
             </div>
-            <div class="p-field p-col">
-              <label>Age</label>
-              <p-inputNumber [(ngModel)]="valueFilter.age" mode="decimal" [min]="0" [max]="100"></p-inputNumber>
+            <div class="p-field p-col-12 p-md-6">
+              <label>{{'component.test2.modal.age' | translate}}</label>
+              <p-inputNumber class="popup-custom" [(ngModel)]="valueFilter.age" mode="decimal" [min]="0" [max]="100"></p-inputNumber>
             </div>
           </div>
 
           <div class="p-fluid p-formgrid p-grid one-row">
-            <div class="p-field p-col">
-              <label for="address">Address</label>
+            <div class="p-field p-col-12 p-md-6">
+              <label for="address">{{'component.test2.modal.address' | translate}}</label>
               <input [(ngModel)]="valueFilter.address" id="address" type="text" pInputText>
             </div>
-            <div class="p-field p-col">
-              <label>dob</label>
+            <div class="p-field p-col-12 p-md-6">
+              <label>{{'component.test2.modal.dob' | translate}}</label>
               <p-calendar
                 [(ngModel)]="valueFilter.dob"
               >
@@ -38,19 +38,19 @@
           </div>
 
           <div class="p-fluid p-formgrid p-grid one-row">
-            <div class="p-field p-col">
-              <label for="job">Job</label>
+            <div class="p-field p-col-12 p-md-6">
+              <label for="job">{{'component.test2.modal.job' | translate}}</label>
               <input [(ngModel)]="valueFilter.job" id="job" type="text" pInputText>
             </div>
-            <div class="p-field p-col">
-              <label>Salary</label>
+            <div class="p-field p-col-12 p-md-6">
+              <label>{{'component.test2.modal.salary' | translate}}</label>
               <p-inputNumber [(ngModel)]="valueFilter.salary" mode="decimal" [min]="0" [max]="100000"></p-inputNumber>
             </div>
           </div>
 
           <div class="btn-manipulation">
-            <button pButton type="button" class="search" label="SEARCH" (click)="search()"></button>
-            <button pButton type="button" class="cancel" label="CANCEL" (click)="op.hide()"></button>
+            <button pButton type="button" class="search" label="{{'btn.search' | translate}}" (click)="search()"></button>
+            <button pButton type="button" class="cancel" label="{{'btn.cancel' | translate}}" (click)="op.hide()"></button>
           </div>
         </div>
       </div>

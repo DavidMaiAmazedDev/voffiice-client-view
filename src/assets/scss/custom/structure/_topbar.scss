@@ -1,12 +1,14 @@
-// 
+//
 // _header.scss
-// 
+//
 
 #page-topbar {
   position: fixed;
   top: 0;
-  right: 0;
-  left: 0;
+  position: fixed;
+  width: calc(100% - 250px);
+  top: 0px;
+  left: 250px;
   z-index: 1002;
   background-color: $header-bg;
   box-shadow: $box-shadow;
@@ -89,7 +91,6 @@
   .navbar-brand-box {
     width: auto;
   }
-
   .logo {
 
     span.logo-lg {
@@ -187,6 +188,10 @@
 body[data-topbar="dark"] {
   #page-topbar {
     background-color: $header-dark-bg;
+    position: fixed;
+    width: calc( 100% - 250px );
+    top: 0px;
+    left: 250px;
   }
 
   .navbar-header {
@@ -277,6 +282,10 @@ body[data-sidebar="dark"] {
 body[data-topbar="dark"] {
   #page-topbar {
     background-color: $header-dark-bg;
+    position: fixed;
+    width: calc( 100% - 250px );
+    top: 0px;
+    left: 250px;
   }
 
   .navbar-header {

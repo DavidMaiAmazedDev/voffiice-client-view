@@ -1,5 +1,5 @@
 
-<p-button label="View Columns" icon="pi pi-search" (click)="getDefaultDisplayColumn(listColumnNames) ;op.toggle($event)"></p-button>
+<p-button label="{{'btn.columns' | translate}}" icon="pi pi-search" (click)="getDefaultDisplayColumn(listColumnNames) ;op.toggle($event)" styleClass="p-button-custom"></p-button>
 
 <p-overlayPanel #op [showCloseIcon]="false" [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'100ms'">
   <ng-template pTemplate>
