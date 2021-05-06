@@ -3,9 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { DndModule } from 'ngx-drag-drop';
 import { NgbDropdownModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {TestRoutingModule} from './test-routing.module';
@@ -19,8 +16,6 @@ import { TestAddNewModalComponent } from './test1/test-add-new-modal/test-add-ne
 import { TestViewOptionColumnComponent } from './test2/test-view-option-column/test-view-option-column.component';
 import { TestFilterModalComponent } from './test2/test-filter-modal/test-filter-modal.component';
 import { Test2AddNewModalComponent } from './test2/test2-add-new-modal/test2-add-new-modal.component';
-import {NotifierModule} from 'angular-notifier';
-import {CUSTOM_NOTIFIER_OPTIONS} from '../../core/helpers/utils';
 import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
@@ -29,10 +24,7 @@ import {TranslateModule} from '@ngx-translate/core';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        NgApexchartsModule,
         NgbDatepickerModule,
-        CKEditorModule,
-        DndModule,
         ClickOutsideModule,
         TestRoutingModule,
         NgbDropdownModule,

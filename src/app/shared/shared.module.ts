@@ -8,10 +8,6 @@ import {LoaderService} from '../core/services/loader.service';
 import {CopierService} from '../core/services/copier.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {LoaderInterceptorService} from '../core/helpers/loader-interceptor.service';
-import {FullCalendarModule} from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import bootstrapPlugin from '@fullcalendar/bootstrap';
 import {en_US, NZ_I18N, vi_VN} from 'ng-zorro-antd/i18n';
 import {NgZorroAntdModule} from './ng-zorror-antd.module';
 import {CUSTOM_NOTIFIER_OPTIONS} from '../core/helpers/utils';
@@ -23,11 +19,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelSpeed: 0.3
 };
 
-FullCalendarModule.registerPlugins([
-  dayGridPlugin,
-  interactionPlugin,
-  bootstrapPlugin
-]);
+// FullCalendarModule.registerPlugins([
+//   dayGridPlugin,
+//   interactionPlugin,
+//   bootstrapPlugin
+// ]);
 
 // registerLocaleData(en);
 //
