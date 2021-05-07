@@ -21,7 +21,16 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [LayoutComponent, SidebarComponent, TopbarComponent, FooterComponent, RightsidebarComponent, HorizontalComponent, VerticalComponent, HorizontaltopbarComponent],
+  declarations: [
+    LayoutComponent,
+    SidebarComponent,
+    TopbarComponent,
+    FooterComponent,
+    RightsidebarComponent,
+    HorizontalComponent,
+    VerticalComponent,
+    HorizontaltopbarComponent,
+  ],
   imports: [
     CommonModule,
     TranslateModule,
@@ -29,8 +38,8 @@ import { TranslateModule } from '@ngx-translate/core';
     NgbDropdownModule,
     ClickOutsideModule,
     UIModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
   ],
-  providers: [LanguageService]
+  providers: [LanguageService],
 })
-export class LayoutsModule { }
+export class LayoutsModule {}

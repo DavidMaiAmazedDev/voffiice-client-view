@@ -1,16 +1,15 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {TestModel} from '../../../../core/models/test-model';
-import {NzSafeAny} from 'ng-zorro-antd/core/types';
-import {CustomValidationService} from '../../../../core/services/customValidation.service';
-import {DatePipe} from '@angular/common';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { TestModel } from '../../../../core/models/test-model';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { CustomValidationService } from '../../../../core/services/customValidation.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-test2-add-new-modal',
   templateUrl: './test2-add-new-modal.component.html',
-  styleUrls: ['./test2-add-new-modal.component.scss']
+  styleUrls: ['./test2-add-new-modal.component.scss'],
 })
-
 export class Test2AddNewModalComponent implements OnInit {
   testAddNewForm: FormGroup;
   @Input() testDataElement: TestModel;
@@ -25,16 +24,42 @@ export class Test2AddNewModalComponent implements OnInit {
   maxAge = 50;
   minSalary = 100;
   maxSalary = 10000;
-  constructor(private fb: FormBuilder, private customValidator: CustomValidationService, private datePipe: DatePipe) {
-
+  constructor(
+    private fb: FormBuilder,
+    private customValidator: CustomValidationService,
+    private datePipe: DatePipe
+  ) {
     // const {required, maxLength, minLength, age } = MyValidators;
     this.testAddNewForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(this.minLengthName), Validators.max(this.maxLengthName)]],
-      age: ['', [Validators.required, this.customValidator.numberValidator(), Validators.min(this.minAge), Validators.max(this.maxAge)]],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(this.minLengthName),
+          Validators.max(this.maxLengthName),
+        ],
+      ],
+      age: [
+        '',
+        [
+          Validators.required,
+          this.customValidator.numberValidator(),
+          Validators.min(this.minAge),
+          Validators.max(this.maxAge),
+        ],
+      ],
       address: ['', [Validators.required]],
       dob: ['', [Validators.required, this.customValidator.dateValidator()]],
       job: ['', [Validators.required]],
-      salary: ['', [Validators.required, this.customValidator.numberValidator(), Validators.min(this.minSalary), Validators.max(this.maxAge)]]
+      salary: [
+        '',
+        [
+          Validators.required,
+          this.customValidator.numberValidator(),
+          Validators.min(this.minSalary),
+          Validators.max(this.maxAge),
+        ],
+      ],
     });
   }
 
@@ -51,7 +76,7 @@ export class Test2AddNewModalComponent implements OnInit {
   }
 
   setFormData(data: TestModel) {
-    if (data !== null){
+    if (data !== null) {
       // data.dob = new Date(data.dob);
       // console.log(this.validateForm);
       this.testAddNewForm.patchValue(data);
@@ -75,7 +100,6 @@ export class Test2AddNewModalComponent implements OnInit {
     }
     this.newData.emit(this.testAddNewForm.value);
   }
-
 }
 
 // export type MyErrorsOptions = { 'zh-cn': string; en: string } & Record<string, NzSafeAny>;
@@ -132,5 +156,3 @@ export class Test2AddNewModalComponent implements OnInit {
 // function isAge(value: string): boolean {
 //   return typeof value === 'string' && /(^1\d{10}$)/.test(value);
 // }
-
-

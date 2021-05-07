@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { NgbNavModule, NgbDropdownModule, NgbModalModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbNavModule,
+  NgbDropdownModule,
+  NgbModalModule,
+  NgbTooltipModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { PagesRoutingModule } from './pages-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FilemanagerComponent } from './filemanager/filemanager.component';
-import {TestModule} from './test/test.module';
+import { TestModule } from './test/test.module';
 import { PrivatePageComponent } from './private-page/private-page.component';
-import {SystemModule} from './system/system.module';
-
-
+import { SystemModule } from './system/system.module';
 
 @NgModule({
-  declarations: [FilemanagerComponent, PrivatePageComponent ],
+  declarations: [FilemanagerComponent, PrivatePageComponent],
   imports: [
     TestModule,
     SystemModule,
@@ -28,6 +31,6 @@ import {SystemModule} from './system/system.module';
     NgbNavModule,
     NgbTooltipModule,
     PerfectScrollbarModule,
-  ]
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}

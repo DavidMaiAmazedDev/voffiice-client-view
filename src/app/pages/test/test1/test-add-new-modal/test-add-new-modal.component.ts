@@ -1,16 +1,22 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TestModel} from '../../../../core/models/test-model';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Observable, Observer} from 'rxjs';
-import {NzSafeAny} from 'ng-zorro-antd/core/types';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TestModel } from '../../../../core/models/test-model';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { Observable, Observer } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 @Component({
   selector: 'app-test-add-new-modal',
   templateUrl: './test-add-new-modal.component.html',
-  styleUrls: ['./test-add-new-modal.component.scss']
+  styleUrls: ['./test-add-new-modal.component.scss'],
 })
 export class TestAddNewModalComponent implements OnInit {
-
   @Input() testDataElement: TestModel;
   @Input() isAddNew: boolean;
   @Input() isEdit: boolean;
@@ -23,24 +29,24 @@ export class TestAddNewModalComponent implements OnInit {
   // if it is not found, it will be searched again with `default`
   autoTips: Record<string, Record<string, string>> = {
     'zh-cn': {
-      required: '必填项'
+      required: '必填项',
     },
     en: {
-      required: 'Input is required'
+      required: 'Input is required',
     },
     default: {
-      email: '邮箱格式不正确/The input is not valid email'
-    }
+      email: '邮箱格式不正确/The input is not valid email',
+    },
   };
   constructor(private fb: FormBuilder) {
-    const {required, maxLength, minLength, age } = MyValidators;
+    const { required, maxLength, minLength, age } = MyValidators;
     this.validateForm = this.fb.group({
       name: ['', [required, maxLength(50), minLength(6)]],
       age: ['', [required, age]],
       address: ['', [required]],
       dob: [null, [required]],
       job: ['', [required]],
-      salary: ['', [required]]
+      salary: ['', [required]],
     });
   }
 
@@ -54,7 +60,7 @@ export class TestAddNewModalComponent implements OnInit {
   }
 
   setFormData(data: TestModel) {
-    if (data !== null){
+    if (data !== null) {
       this.validateForm.patchValue(data);
     }
   }
@@ -75,7 +81,13 @@ export class TestAddNewModalComponent implements OnInit {
     // console.log(this.testDataElement);
   }
 
-  submitForm(value: { userName: string; email: string; password: string; confirm: string; comment: string }): void {
+  submitForm(value: {
+    userName: string;
+    email: string;
+    password: string;
+    confirm: string;
+    comment: string;
+  }): void {
     // tslint:disable-next-line:forin
     for (const key in this.validateForm.controls) {
       this.validateForm.controls[key].markAsDirty();
@@ -93,14 +105,17 @@ export class TestAddNewModalComponent implements OnInit {
       setTimeout(() => {
         if (control.value === 'JasonWood') {
           observer.next({
-            duplicated: { 'zh-cn': `用户名已存在`, en: `The username is redundant!` }
+            duplicated: {
+              'zh-cn': `用户名已存在`,
+              en: `The username is redundant!`,
+            },
           });
         } else {
           observer.next(null);
         }
         observer.complete();
       }, 1000);
-    })
+    });
 
   confirmValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
@@ -109,8 +124,7 @@ export class TestAddNewModalComponent implements OnInit {
       return { confirm: true, error: true };
     }
     return {};
-  }
-
+  };
 }
 
 export type MyErrorsOptions = { 'zh-cn': string; en: string } & Record<string, NzSafeAny>;
@@ -122,7 +136,12 @@ export class MyValidators extends Validators {
       if (Validators.minLength(minLength)(control) === null) {
         return null;
       }
-      return { minlength: { 'zh-cn': `最小长度为 ${minLength}`, en: `MinLength is ${minLength}` } };
+      return {
+        minlength: {
+          'zh-cn': `最小长度为 ${minLength}`,
+          en: `MinLength is ${minLength}`,
+        },
+      };
     };
   }
 
@@ -131,7 +150,12 @@ export class MyValidators extends Validators {
       if (Validators.maxLength(maxLength)(control) === null) {
         return null;
       }
-      return { maxlength: { 'zh-cn': `最大长度为 ${maxLength}`, en: `MaxLength is ${maxLength}` } };
+      return {
+        maxlength: {
+          'zh-cn': `最大长度为 ${maxLength}`,
+          en: `MaxLength is ${maxLength}`,
+        },
+      };
     };
   }
 
@@ -142,7 +166,14 @@ export class MyValidators extends Validators {
       return null;
     }
 
-    return isMobile(value) ? null : { mobile: { 'zh-cn': `手机号码格式不正确`, en: `Mobile phone number is not valid` } };
+    return isMobile(value)
+      ? null
+      : {
+          mobile: {
+            'zh-cn': `手机号码格式不正确`,
+            en: `Mobile phone number is not valid`,
+          },
+        };
   }
 
   static age(control: AbstractControl): MyValidationErrors | null {
@@ -152,7 +183,9 @@ export class MyValidators extends Validators {
       return null;
     }
 
-    return isAge(value) ? null : { mobile: { 'zh-cn': `手机号码格式不正确`, en: `Age is not valid` } };
+    return isAge(value)
+      ? null
+      : { mobile: { 'zh-cn': `手机号码格式不正确`, en: `Age is not valid` } };
   }
 }
 
@@ -167,4 +200,3 @@ function isMobile(value: string): boolean {
 function isAge(value: string): boolean {
   return typeof value === 'string' && /(^1\d{10}$)/.test(value);
 }
-

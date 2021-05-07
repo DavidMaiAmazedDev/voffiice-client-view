@@ -1,20 +1,27 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {DeepCopyArray} from '../../../../core/helpers/utils';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { DeepCopyArray } from '../../../../core/helpers/utils';
 
 @Component({
   selector: 'app-test-view-option-column',
   templateUrl: './test-view-option-column.component.html',
-  styleUrls: ['./test-view-option-column.component.scss']
+  styleUrls: ['./test-view-option-column.component.scss'],
 })
 export class TestViewOptionColumnComponent implements OnInit {
-
   @Input() listColumnNames: string[];
   @Input() defaultDisplayColumn: string[];
   @Output() changeColumnViews = new EventEmitter<string[]>();
   selectedColumns: string[];
   isFirstToCome = true;
   @ViewChild('op') inputElement: any;
-  constructor() { }
+  constructor() {}
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.inputElement.hide();
@@ -25,7 +32,7 @@ export class TestViewOptionColumnComponent implements OnInit {
   }
 
   getDefaultDisplayColumn(data: string[]) {
-    if (this.isFirstToCome){
+    if (this.isFirstToCome) {
       this.selectedColumns = DeepCopyArray(this.defaultDisplayColumn);
     } else {
       this.isFirstToCome = false;
@@ -35,5 +42,4 @@ export class TestViewOptionColumnComponent implements OnInit {
   upDateColumnViews() {
     this.changeColumnViews.emit(this.selectedColumns);
   }
-
 }

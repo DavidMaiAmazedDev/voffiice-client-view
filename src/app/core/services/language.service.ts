@@ -11,8 +11,7 @@ export class LanguageService {
     this.translate.addLangs(this.languages);
     if (this.cookieService.check('lang')) {
       browserLang = this.cookieService.get('lang');
-    }
-    else {
+    } else {
       browserLang = translate.getBrowserLang();
     }
     translate.use(browserLang.match(/en|es|de|it|ru/) ? browserLang : 'en');
@@ -22,5 +21,4 @@ export class LanguageService {
     this.translate.use(lang);
     this.cookieService.set('lang', lang);
   }
-
 }

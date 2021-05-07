@@ -1,25 +1,33 @@
-import {Component, OnInit, AfterViewInit, ElementRef, ViewChild, Input, OnChanges, inject} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  ViewChild,
+  Input,
+  OnChanges,
+  inject,
+} from '@angular/core';
 import MetisMenu from 'metismenujs/dist/metismenujs';
 import { EventService } from '../../core/services/event.service';
-import {Router, NavigationEnd} from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { TranslateService } from '@ngx-translate/core';
-import {AuthenticationService} from '../../core/services/auth.service';
-import {UserProfileService} from '../../core/services/user.service';
-import {MenuVerticalItem} from '../../core/models/menu-vertical.model';
+import { AuthenticationService } from '../../core/services/auth.service';
+import { UserProfileService } from '../../core/services/user.service';
+import { MenuVerticalItem } from '../../core/models/menu-vertical.model';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 
 /**
  * Sidebar component
  */
 export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
-
   @Input() isCondensed = false;
   @Input() color;
   menu: any;
@@ -32,15 +40,22 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
 
   // @ts-ignore
   // tslint:disable-next-line:max-line-length
-  constructor(private eventService: EventService, private router: Router, public translate: TranslateService, private http: HttpClient, private authService: AuthenticationService, private userService: UserProfileService) {
-    router.events.forEach(  (event) => {
+  constructor(
+    private eventService: EventService,
+    private router: Router,
+    public translate: TranslateService,
+    private http: HttpClient,
+    private authService: AuthenticationService,
+    private userService: UserProfileService
+  ) {
+    router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
-         this._activateMenuDropdown();
+        this._activateMenuDropdown();
         // window.location.href = event.urlAfterRedirects;
-         // router.navigate([event.urlAfterRedirects])
-         //  .then(() => {
-         //    window.location.reload();
-         //  });
+        // router.navigate([event.urlAfterRedirects])
+        //  .then(() => {
+        //    window.location.reload();
+        //  });
         // router.navigate([event.urlAfterRedirects], {});
         // router
         //   .navigateByUrl('/', { skipLocationChange: true })
@@ -53,7 +68,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     this.initialize();
     document.body.setAttribute('data-sidebar', 'dark');
     this.configData = {
-      suppressScrollX: true
+      suppressScrollX: true,
     };
     // console.log(this.route123);
     console.log(this.authService.currentUser());
@@ -76,7 +91,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (!this.isCondensed && this.sideMenu || this.isCondensed) {
+    if ((!this.isCondensed && this.sideMenu) || this.isCondensed) {
       setTimeout(() => {
         this.menu = new MetisMenu(this.sideMenu.nativeElement);
       });
@@ -200,8 +215,12 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
             parent3El.classList.add('mm-active');
             const childAnchor = parent3El.querySelector('.has-arrow');
             const childDropdown = parent3El.querySelector('.has-dropdown');
-            if (childAnchor) { childAnchor.classList.add('mm-active'); }
-            if (childDropdown) { childDropdown.classList.add('mm-active'); }
+            if (childAnchor) {
+              childAnchor.classList.add('mm-active');
+            }
+            if (childDropdown) {
+              childDropdown.classList.add('mm-active');
+            }
             const parent4El = parent3El.parentElement;
             if (parent4El && parent4El.id !== 'side-menu') {
               parent4El.classList.add('mm-show');
@@ -209,7 +228,9 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
               if (parent5El && parent5El.id !== 'side-menu') {
                 parent5El.classList.add('mm-active');
                 const childanchor = parent5El.querySelector('.is-parent');
-                if (childanchor && parent5El.id !== 'side-menu') { childanchor.classList.add('mm-active'); }
+                if (childanchor && parent5El.id !== 'side-menu') {
+                  childanchor.classList.add('mm-active');
+                }
               }
             }
           }

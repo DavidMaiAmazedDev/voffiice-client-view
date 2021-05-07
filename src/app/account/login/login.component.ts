@@ -12,14 +12,13 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 
 /**
  * Login component
  */
 export class LoginComponent implements OnInit, AfterViewInit {
-
   loginForm: FormGroup;
   submitted = false;
   error = '';
@@ -29,8 +28,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
   year: number = new Date().getFullYear();
 
   // tslint:disable-next-line: max-line-length
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService,
-              private authFackservice: AuthfakeauthenticationService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private authFackservice: AuthfakeauthenticationService
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -45,11 +49,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   // convenience getter for easy access to form fields
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   /**
    * Form submit
@@ -61,17 +66,19 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-          this.authFackservice.login(this.f.email.value, this.f.password.value)
-            .pipe(first())
-            .subscribe(
-              data => {
-                this.router.navigate(['/filemanager']);
-              },
-              error => {
-                this.router.navigate(['/filemanager']);
-                this.error = error ? error : '';
-              });
-        }
+      this.authFackservice
+        .login(this.f.email.value, this.f.password.value)
+        .pipe(first())
+        .subscribe(
+          (data) => {
+            this.router.navigate(['/filemanager']);
+          },
+          (error) => {
+            this.router.navigate(['/filemanager']);
+            this.error = error ? error : '';
+          }
+        );
+    }
     // else {
     //   if (environment.defaultauth === 'firebase') {
     //     this.authenticationService.login(this.f.email.value, this.f.password.value).then((res: any) => {

@@ -1,17 +1,31 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Observable, Observer} from 'rxjs';
-import {NzSafeAny} from 'ng-zorro-antd/core/types';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { Observable, Observer } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
-import {Filter} from '../../../../core/interfaces/test.dataRequest.interface';
-import {TestModel, TestSearchModel} from '../../../../core/models/test-model';
+import { Filter } from '../../../../core/interfaces/test.dataRequest.interface';
+import { TestModel, TestSearchModel } from '../../../../core/models/test-model';
 
 @Component({
   selector: 'app-test-filter',
   templateUrl: './test-filter.component.html',
-  styleUrls: ['./test-filter.component.scss']
+  styleUrls: ['./test-filter.component.scss'],
 })
-
 export class TestFilterComponent implements OnInit {
   private searchOption: Filter[];
   constructor(private fb: FormBuilder) {
@@ -21,7 +35,7 @@ export class TestFilterComponent implements OnInit {
       mobile: ['', [required, mobile]],
       email: ['', [required, email]],
       password: ['', [required]],
-      confirm: ['', [this.confirmValidator]]
+      confirm: ['', [this.confirmValidator]],
     });
   }
   @Output() searchRequest = new EventEmitter<TestSearchModel>();
@@ -36,7 +50,6 @@ export class TestFilterComponent implements OnInit {
   searchSalary;
   searchAddress;
   searchDob;
-
 
   @ViewChild('inputAge', { static: false }) inputAge?: ElementRef;
   @ViewChild('inputSalary', { static: false }) inputSalary?: ElementRef;
@@ -70,16 +83,20 @@ export class TestFilterComponent implements OnInit {
   //   this.hideFilterModal.emit();
   // }
 
-  getCurrentMenu(item: string){
+  getCurrentMenu(item: string) {
     switch (item) {
-      case this.listMenu[0]: this.valueFilter.name = 'messi';
-                             break;
-      case this.listMenu[1]: this.valueFilter.age = 20;
-                             break;
-      case this.listMenu[2]: this.valueFilter.dob = new Date();
-                             break;
-      case this.listMenu[3]: this.valueFilter.job = 'doctor';
-                             break;
+      case this.listMenu[0]:
+        this.valueFilter.name = 'messi';
+        break;
+      case this.listMenu[1]:
+        this.valueFilter.age = 20;
+        break;
+      case this.listMenu[2]:
+        this.valueFilter.dob = new Date();
+        break;
+      case this.listMenu[3]:
+        this.valueFilter.job = 'doctor';
+        break;
     }
   }
 
@@ -162,14 +179,17 @@ export class TestFilterComponent implements OnInit {
       setTimeout(() => {
         if (control.value === 'JasonWood') {
           observer.next({
-            duplicated: { 'zh-cn': `用户名已存在`, en: `The username is redundant!` }
+            duplicated: {
+              'zh-cn': `用户名已存在`,
+              en: `The username is redundant!`,
+            },
           });
         } else {
           observer.next(null);
         }
         observer.complete();
       }, 1000);
-    })
+    });
 
   confirmValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
@@ -178,7 +198,7 @@ export class TestFilterComponent implements OnInit {
       return { confirm: true, error: true };
     }
     return {};
-  }
+  };
 }
 
 // current locale is key of the MyErrorsOptions
@@ -191,7 +211,12 @@ export class MyValidators extends Validators {
       if (Validators.minLength(minLength)(control) === null) {
         return null;
       }
-      return { minlength: { 'zh-cn': `最小长度为 ${minLength}`, en: `MinLength is ${minLength}` } };
+      return {
+        minlength: {
+          'zh-cn': `最小长度为 ${minLength}`,
+          en: `MinLength is ${minLength}`,
+        },
+      };
     };
   }
 
@@ -200,7 +225,12 @@ export class MyValidators extends Validators {
       if (Validators.maxLength(maxLength)(control) === null) {
         return null;
       }
-      return { maxlength: { 'zh-cn': `最大长度为 ${maxLength}`, en: `MaxLength is ${maxLength}` } };
+      return {
+        maxlength: {
+          'zh-cn': `最大长度为 ${maxLength}`,
+          en: `MaxLength is ${maxLength}`,
+        },
+      };
     };
   }
 
@@ -211,7 +241,14 @@ export class MyValidators extends Validators {
       return null;
     }
 
-    return isMobile(value) ? null : { mobile: { 'zh-cn': `手机号码格式不正确`, en: `Mobile phone number is not valid` } };
+    return isMobile(value)
+      ? null
+      : {
+          mobile: {
+            'zh-cn': `手机号码格式不正确`,
+            en: `Mobile phone number is not valid`,
+          },
+        };
   }
 }
 

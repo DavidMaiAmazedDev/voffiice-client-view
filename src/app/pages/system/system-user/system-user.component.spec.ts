@@ -8,9 +8,8 @@ describe('SystemUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SystemUserComponent ]
-    })
-    .compileComponents();
+      declarations: [SystemUserComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

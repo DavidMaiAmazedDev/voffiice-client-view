@@ -10,14 +10,13 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.scss']
+  styleUrls: ['./topbar.component.scss'],
 })
 
 /**
  * Topbar component
  */
 export class TopbarComponent implements OnInit {
-
   element;
   configData;
   cookieValue;
@@ -25,12 +24,15 @@ export class TopbarComponent implements OnInit {
   countryName;
   valueset;
 
-  constructor(@Inject(DOCUMENT) private document: any, private router: Router, private authService: AuthenticationService,
-              private authFackservice: AuthfakeauthenticationService,
-              public languageService: LanguageService,
-              public translate: TranslateService,
-              public _cookiesService: CookieService) {
-  }
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    private router: Router,
+    private authService: AuthenticationService,
+    private authFackservice: AuthfakeauthenticationService,
+    public languageService: LanguageService,
+    public translate: TranslateService,
+    public _cookiesService: CookieService
+  ) {}
 
   listLang = [
     { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
@@ -45,7 +47,6 @@ export class TopbarComponent implements OnInit {
   backgroundColor = '#2a3042';
   sidebarColor = '#2a3042';
 
-
   @Output() settingsButtonClicked = new EventEmitter();
   @Output() mobileMenuButtonClicked = new EventEmitter();
   @Output() changeSidebarColor = new EventEmitter();
@@ -56,18 +57,20 @@ export class TopbarComponent implements OnInit {
 
     this.configData = {
       suppressScrollX: true,
-      wheelSpeed: 0.3
+      wheelSpeed: 0.3,
     };
 
     this.cookieValue = this._cookiesService.get('lang');
-    const val = this.listLang.filter(x => x.lang === this.cookieValue);
-    this.countryName = val.map(element => element.text);
+    const val = this.listLang.filter((x) => x.lang === this.cookieValue);
+    this.countryName = val.map((element) => element.text);
     console.log(val);
     if (val.length === 0) {
-      if (this.flagvalue === undefined) { this.valueset = 'assets/images/flags/us.jpg'; }
+      if (this.flagvalue === undefined) {
+        this.valueset = 'assets/images/flags/us.jpg';
+      }
       this.languageService.setLanguage('en');
     } else {
-      this.flagvalue = val.map(element => element.flag);
+      this.flagvalue = val.map((element) => element.flag);
       this.languageService.setLanguage(this.cookieValue);
     }
   }
@@ -115,8 +118,10 @@ export class TopbarComponent implements OnInit {
   fullscreen() {
     document.body.classList.toggle('fullscreen-enable');
     if (
-      !document.fullscreenElement && !this.element.mozFullScreenElement &&
-      !this.element.webkitFullscreenElement) {
+      !document.fullscreenElement &&
+      !this.element.mozFullScreenElement &&
+      !this.element.webkitFullscreenElement
+    ) {
       if (this.element.requestFullscreen) {
         this.element.requestFullscreen();
       } else if (this.element.mozRequestFullScreen) {
@@ -154,7 +159,5 @@ export class TopbarComponent implements OnInit {
     this.backgroundColor = color;
   }
 
-  hide() {
-
-  }
+  hide() {}
 }

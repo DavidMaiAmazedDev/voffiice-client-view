@@ -1,16 +1,14 @@
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
-
   position: -webkit-sticky;
   position: sticky;
   top: 70px;
   z-index: 9;
-  box-shadow: 1px 3px 6px 0 rgba(32,33,36,0.10);
+  box-shadow: 1px 3px 6px 0 rgba(32, 33, 36, 0.1);
   font-family: Tino-Regular;
   font-size: 16px;
 }
 
 :host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
-
   font-family: Open-Sans-Regular;
   font-size: 14px;
 }
@@ -27,7 +25,6 @@
 }
 
 :host ::ng-deep .p-datatable .p-paginator {
-
   span {
     //font-family: Open-Sans-Regular;
     font-size: 14px;
@@ -46,16 +43,15 @@
 }
 
 .search-icon-custom {
-
   &:hover {
     cursor: pointer;
   }
 }
 
 :host ::ng-deep .p-toolbar {
-    padding: 0;
-    border: none;
-    background: #ffffff;
+  padding: 0;
+  border: none;
+  background: #ffffff;
 }
 
 .p-button-danger {
@@ -104,6 +100,3 @@
     justify-content: flex-start !important;
   }
 }
-
-
-

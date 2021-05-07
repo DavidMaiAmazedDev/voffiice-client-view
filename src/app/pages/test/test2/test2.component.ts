@@ -1,20 +1,24 @@
-import {Component, Host, OnInit, Optional, Self} from '@angular/core';
-import {ConfirmationDialogService} from '../../../core/services/confirmation-dialog.service';
-import {NotifierService} from 'angular-notifier';
-import {CopierService} from '../../../core/services/copier.service';
-import {PrimeNGConfig} from 'primeng/api';
-import {CustomerService} from '../../../core/services/customer.service';
-import {Filter, Sort, TestDataRequestInterface} from '../../../core/interfaces/test.dataRequest.interface';
-import {DeepCopyArray} from '../../../core/helpers/utils';
-import {TestService123} from '../../../services/bases/test.service';
-import {TestModel, TestSearchModel} from '../../../core/models/test-model';
-import {ExportService} from '../../../core/services/export.service';
+import { Component, Host, OnInit, Optional, Self } from '@angular/core';
+import { ConfirmationDialogService } from '../../../core/services/confirmation-dialog.service';
+import { NotifierService } from 'angular-notifier';
+import { CopierService } from '../../../core/services/copier.service';
+import { PrimeNGConfig } from 'primeng/api';
+import { CustomerService } from '../../../core/services/customer.service';
+import {
+  Filter,
+  Sort,
+  TestDataRequestInterface,
+} from '../../../core/interfaces/test.dataRequest.interface';
+import { DeepCopyArray } from '../../../core/helpers/utils';
+import { TestService123 } from '../../../services/bases/test.service';
+import { TestModel, TestSearchModel } from '../../../core/models/test-model';
+import { ExportService } from '../../../core/services/export.service';
 
 @Component({
   selector: 'app-test2',
   templateUrl: './test2.component.html',
   styleUrls: ['./test2.component.scss'],
-  providers: [CopierService]
+  providers: [CopierService],
 })
 export class Test2Component implements OnInit {
   breadCrumbItems: any = [];
@@ -40,7 +44,7 @@ export class Test2Component implements OnInit {
   testDataElement: TestModel = null;
   sort: Sort = {
     field: null,
-    asc: null
+    asc: null,
   };
   pageOption = [20, 50, 100];
   filter: Filter[] = [];
@@ -49,8 +53,15 @@ export class Test2Component implements OnInit {
   overallSearch = '';
 
   // @ts-ignore
-  constructor(private confirmationDialogService: ConfirmationDialogService, @Self() private copierService: CopierService, private notifier: NotifierService, private customerService: CustomerService, private primengConfig: PrimeNGConfig, private testService123: TestService123, private exportService: ExportService) {
-  }
+  constructor(
+    private confirmationDialogService: ConfirmationDialogService,
+    @Self() private copierService: CopierService,
+    private notifier: NotifierService,
+    private customerService: CustomerService,
+    private primengConfig: PrimeNGConfig,
+    private testService123: TestService123,
+    private exportService: ExportService
+  ) {}
 
   ngOnInit(): void {
     // this.breadCrumbItems = [{ label: 'Test' }, { label: 'Test2', active: false }];
@@ -59,21 +70,24 @@ export class Test2Component implements OnInit {
   getData(request: TestDataRequestInterface) {
     this.isLoading = true;
     this.listOfData = [];
-    this.testService123.getFakedata(request).subscribe(response => {
-      // @ts-ignore
-      this.listOfData = response.data;
-      if (this.isFirstToCome){
-        this.getColumnNames(this.listOfData);
+    this.testService123.getFakedata(request).subscribe(
+      (response) => {
+        // @ts-ignore
+        this.listOfData = response.data;
+        if (this.isFirstToCome) {
+          this.getColumnNames(this.listOfData);
+        }
+        this.totalRecords = response.total;
+        this.isLoading = false;
+        this.isFirstToCome = false;
+        this.copierService.copyText('done !');
+        this.showNotification('success', 'get data done !');
+      },
+      (error) => {
+        console.log(error);
+        this.isLoading = false;
       }
-      this.totalRecords = response.total;
-      this.isLoading = false;
-      this.isFirstToCome = false;
-      this.copierService.copyText('done !');
-      this.showNotification('success', 'get data done !');
-    }, error => {
-      console.log(error);
-      this.isLoading = false;
-    });
+    );
   }
 
   // async openConfirmationDialog() {
@@ -88,18 +102,18 @@ export class Test2Component implements OnInit {
   //   }
   // }
 
-  public showNotification( type: string, message: string ): void {
-    this.notifier.notify( type, message );
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 
   getColumnNames(data: any) {
     this.listColumnNames = DeepCopyArray(Object.keys(data[0]));
-    this.listColumnNames = this.listColumnNames.filter(el => el !== 'id');
+    this.listColumnNames = this.listColumnNames.filter((el) => el !== 'id');
     this.getDefaultDisplayColumn(this.listColumnNames);
   }
 
   getDefaultDisplayColumn(data: string[]) {
-    this.defaultDisplayColumn = data.filter(el => !el.includes('extra'));
+    this.defaultDisplayColumn = data.filter((el) => !el.includes('extra'));
   }
 
   editRecord(data: any) {
@@ -109,27 +123,35 @@ export class Test2Component implements OnInit {
   }
 
   deleteSingleRecord(id: number) {
-    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+    this.confirmationDialogService
+      .confirm('Please confirm..', 'Do you really want to ... ?')
       .then((confirmed) => {
-        if (confirmed){
-          this.testService123.deleteSingleRecord(id).subscribe(response => {
-            console.log(response);
-          }, error => {
-            console.log(error);
-          });
+        if (confirmed) {
+          this.testService123.deleteSingleRecord(id).subscribe(
+            (response) => {
+              console.log(response);
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         }
       })
-      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+      .catch(() =>
+        console.log(
+          'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
+        )
+      );
     console.log(id);
   }
 
   sortFunction(event) {
     this.sort.field = event.sortField;
-    event.sortOrder ? this.sort.asc = true : this.sort.asc = false;
+    event.sortOrder ? (this.sort.asc = true) : (this.sort.asc = false);
     this.pageIndex = event.first / event.rows + 1;
     this.pageSize = event.rows;
     this.setParams();
-}
+  }
 
   setParams() {
     let dataRequest: TestDataRequestInterface;
@@ -138,7 +160,7 @@ export class Test2Component implements OnInit {
     const filter = this.filter;
     const sort = this.sort;
     const overall = this.overallSearch;
-    dataRequest = {pageIndex, pageSize, filter, sort, overall};
+    dataRequest = { pageIndex, pageSize, filter, sort, overall };
     this.getData(dataRequest);
   }
 
@@ -154,19 +176,27 @@ export class Test2Component implements OnInit {
 
   deleteSelectedProducts() {
     // console.log(this.selectedElement);
-    const selectedId = new Set(this.selectedElement.map(el => el.id));
+    const selectedId = new Set(this.selectedElement.map((el) => el.id));
 
-    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+    this.confirmationDialogService
+      .confirm('Please confirm..', 'Do you really want to ... ?')
       .then((confirmed) => {
         if (confirmed) {
-          this.testService123.deleteMultipleRecords(selectedId).subscribe(response => {
-            console.log(response);
-          }, error => {
-            console.log(error);
-          });
+          this.testService123.deleteMultipleRecords(selectedId).subscribe(
+            (response) => {
+              console.log(response);
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         }
       })
-      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+      .catch(() =>
+        console.log(
+          'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
+        )
+      );
     // console.log(this.setOfCheckedId.size);
   }
   onChangeColumnView(event) {
@@ -175,10 +205,10 @@ export class Test2Component implements OnInit {
 
   doSearch(event) {
     this.filter = [];
-    Object.entries(event).forEach(el => {
+    Object.entries(event).forEach((el) => {
       const key = el[0];
       const value = el[1];
-      this.filter.push({key, value});
+      this.filter.push({ key, value });
     });
 
     this.setParams();

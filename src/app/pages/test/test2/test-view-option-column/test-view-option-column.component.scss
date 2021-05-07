@@ -1,21 +1,19 @@
-
 :host ::ng-deep .p-overlaypanel-content {
   max-width: 280px !important;
 
-    .selection-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      width: 100% !important;
+  .selection-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100% !important;
 
-      div {
-        flex: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
-        margin-bottom: 10px;
+    div {
+      flex: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+      margin-bottom: 10px;
 
-        label {
-          margin-left: 8px;
-        }
+      label {
+        margin-left: 8px;
       }
     }
+  }
 }
-

@@ -2,21 +2,18 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { EventService } from '../core/services/event.service';
 
-import {
-  LAYOUT_VERTICAL, LAYOUT_HORIZONTAL
-} from './layouts.model';
+import { LAYOUT_VERTICAL, LAYOUT_HORIZONTAL } from './layouts.model';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit, AfterViewInit {
-
   // layout related config
   layoutType: string;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService) {}
 
   ngOnInit() {
     // default settings
@@ -27,8 +24,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   /**
    * Check if the vertical layout is requested

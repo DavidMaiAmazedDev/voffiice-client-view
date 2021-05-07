@@ -4,14 +4,13 @@ import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-vertical',
   templateUrl: './vertical.component.html',
-  styleUrls: ['./vertical.component.scss']
+  styleUrls: ['./vertical.component.scss'],
 })
 
 /**
  * Vertical component
  */
 export class VerticalComponent implements OnInit, AfterViewInit {
-
   isCondensed = false;
   color = '#2a3042';
 
@@ -34,11 +33,12 @@ export class VerticalComponent implements OnInit, AfterViewInit {
 
   isMobile() {
     const ua = navigator.userAgent;
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua);
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
+      ua
+    );
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   /**
    * on settings button clicked from topbar

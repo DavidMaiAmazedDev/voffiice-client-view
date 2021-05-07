@@ -22,7 +22,6 @@
         </nz-form-control>
       </nz-form-item>
 
-
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired>address</nz-form-label>
         <nz-form-control [nzSpan]="20" nzValidatingTip="Validating...">
@@ -33,7 +32,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired>Date Of Brith</nz-form-label>
         <nz-form-control [nzSpan]="20">
-          <nz-date-picker style="width: 100% !important;" formControlName="dob"></nz-date-picker>
+          <nz-date-picker style="width: 100% !important" formControlName="dob"></nz-date-picker>
           <!--          <input nz-input formControlName="dob" placeholder="dob" />-->
         </nz-form-control>
       </nz-form-item>
@@ -41,7 +40,11 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired>job</nz-form-label>
         <nz-form-control [nzSpan]="16" nzValidatingTip="Validating...">
-          <input nz-input formControlName="job" placeholder="async validate try to write JasonWood" />
+          <input
+            nz-input
+            formControlName="job"
+            placeholder="async validate try to write JasonWood"
+          />
         </nz-form-control>
       </nz-form-item>
 
@@ -51,9 +54,6 @@
           <input nz-input formControlName="salary" placeholder="age" />
         </nz-form-control>
       </nz-form-item>
-
     </form>
-
   </ng-container>
 </nz-modal>
-

@@ -4,16 +4,15 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoaderService } from '../services/loader.service';
 
-
 @Injectable()
 export class LoaderInterceptorService implements HttpInterceptor {
   private requests: HttpRequest<any>[] = [];
-  constructor(private loaderService: LoaderService) { }
+  constructor(private loaderService: LoaderService) {}
 
   removeRequest(req: HttpRequest<any>) {
     const i = this.requests.indexOf(req);
@@ -27,23 +26,23 @@ export class LoaderInterceptorService implements HttpInterceptor {
     this.requests.push(req);
     this.loaderService.isLoading.next(true);
     // tslint:disable-next-line: deprecation
-    return Observable.create(observer => {
-      const subscription = next.handle(req)
-        .subscribe(
-          event => {
-            if (event instanceof HttpResponse) {
-              this.removeRequest(req);
-              observer.next(event);
-            }
-          },
-          err => {
+    return Observable.create((observer) => {
+      const subscription = next.handle(req).subscribe(
+        (event) => {
+          if (event instanceof HttpResponse) {
             this.removeRequest(req);
-            observer.error(err);
-          },
-          () => {
-            this.removeRequest(req);
-            observer.complete();
-          });
+            observer.next(event);
+          }
+        },
+        (err) => {
+          this.removeRequest(req);
+          observer.error(err);
+        },
+        () => {
+          this.removeRequest(req);
+          observer.complete();
+        }
+      );
       return () => {
         this.removeRequest(req);
         subscription.unsubscribe();

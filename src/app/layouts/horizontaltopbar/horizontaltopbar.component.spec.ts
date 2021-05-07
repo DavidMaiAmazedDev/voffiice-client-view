@@ -6,12 +6,13 @@ describe('HorizontaltopbarComponent', () => {
   let component: HorizontaltopbarComponent;
   let fixture: ComponentFixture<HorizontaltopbarComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HorizontaltopbarComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [HorizontaltopbarComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HorizontaltopbarComponent);

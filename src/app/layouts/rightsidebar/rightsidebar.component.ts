@@ -3,18 +3,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-rightsidebar',
   templateUrl: './rightsidebar.component.html',
-  styleUrls: ['./rightsidebar.component.scss']
+  styleUrls: ['./rightsidebar.component.scss'],
 })
 
 /**
  * Rightsidebar component
  */
 export class RightsidebarComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   /**
    * Hide the sidebar
@@ -22,5 +20,4 @@ export class RightsidebarComponent implements OnInit {
   public hide() {
     document.body.classList.remove('right-bar-enabled');
   }
-
 }

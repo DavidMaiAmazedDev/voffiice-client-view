@@ -6,12 +6,13 @@ describe('RightsidebarComponent', () => {
   let component: RightsidebarComponent;
   let fixture: ComponentFixture<RightsidebarComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RightsidebarComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [RightsidebarComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RightsidebarComponent);

@@ -1,6 +1,5 @@
 ::ng-deep .ant-table-wrapper {
   .ant-pagination-item-link .ng-star-inserted {
-
     svg {
       margin-top: -6px;
     }
@@ -15,7 +14,7 @@
     }
   }
 
-  tbody{
+  tbody {
     tr {
       td {
         font-size: 14px;
@@ -25,7 +24,6 @@
       }
     }
   }
-
 }
 
 .manipulation-container {
@@ -34,9 +32,8 @@
   margin-bottom: 24px;
 
   .btn-view-more-columns {
-  background: #34c38f;
-
-}
+    background: #34c38f;
+  }
 }
 
 .icon-edit {

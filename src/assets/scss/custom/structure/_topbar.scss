@@ -92,7 +92,6 @@
     width: auto;
   }
   .logo {
-
     span.logo-lg {
       display: none;
     }
@@ -104,7 +103,8 @@
 }
 
 .page-content {
-  padding: calc(#{$header-height} + #{$grid-gutter-width}) calc(#{$grid-gutter-width} / 2) $footer-height calc(#{$grid-gutter-width} / 2);
+  padding: calc(#{$header-height} + #{$grid-gutter-width}) calc(#{$grid-gutter-width} / 2)
+    $footer-height calc(#{$grid-gutter-width} / 2);
 }
 
 .header-item {
@@ -178,18 +178,18 @@
 
 // Full Screen
 .fullscreen-enable {
-  [data-toggle="fullscreen"] {
+  [data-toggle='fullscreen'] {
     .bx-fullscreen::before {
-      content: "\ea3f";
+      content: '\ea3f';
     }
   }
 }
 
-body[data-topbar="dark"] {
+body[data-topbar='dark'] {
   #page-topbar {
     background-color: $header-dark-bg;
     position: fixed;
-    width: calc( 100% - 250px );
+    width: calc(100% - 250px);
     top: 0px;
     left: 250px;
   }
@@ -233,7 +233,6 @@ body[data-topbar="dark"] {
   }
 
   .app-search {
-
     .form-control {
       background-color: rgba($topbar-search-bg, 0.07);
       color: $white;
@@ -246,7 +245,7 @@ body[data-topbar="dark"] {
   }
 }
 
-body[data-sidebar="dark"] {
+body[data-sidebar='dark'] {
   .navbar-brand-box {
     background: $sidebar-dark-bg;
   }
@@ -279,11 +278,11 @@ body[data-sidebar="dark"] {
   }
 }
 
-body[data-topbar="dark"] {
+body[data-topbar='dark'] {
   #page-topbar {
     background-color: $header-dark-bg;
     position: fixed;
-    width: calc( 100% - 250px );
+    width: calc(100% - 250px);
     top: 0px;
     left: 250px;
   }
@@ -327,7 +326,6 @@ body[data-topbar="dark"] {
   }
 
   .app-search {
-
     .form-control {
       background-color: rgba($topbar-search-bg, 0.07);
       color: $white;
@@ -340,7 +338,7 @@ body[data-topbar="dark"] {
   }
 }
 
-body[data-sidebar="dark"] {
+body[data-sidebar='dark'] {
   .navbar-brand-box {
     background: $sidebar-dark-bg;
   }
@@ -373,19 +371,20 @@ body[data-sidebar="dark"] {
   }
 }
 
-body[data-layout="horizontal"] {
+body[data-layout='horizontal'] {
   .navbar-brand-box {
     width: auto;
   }
 
   .page-content {
     margin-top: $header-height;
-    padding: calc(55px + #{$grid-gutter-width}) calc(#{$grid-gutter-width} / 2) $footer-height calc(#{$grid-gutter-width} / 2);
+    padding: calc(55px + #{$grid-gutter-width}) calc(#{$grid-gutter-width} / 2) $footer-height
+      calc(#{$grid-gutter-width} / 2);
   }
 }
 
 @media (max-width: 992px) {
-  body[data-layout="horizontal"] {
+  body[data-layout='horizontal'] {
     .page-content {
       margin-top: 15px;
     }

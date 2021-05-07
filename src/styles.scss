@@ -1,4 +1,4 @@
-@import "~angular-notifier/styles";
+@import '~angular-notifier/styles';
 /* You can add global styles to this file, and also import other style files */
 
 //@font-face {
@@ -10,26 +10,30 @@
 //  font-family: 'Frackle-Face';
 //  src: url('./assets/fonts/frackle-face/FreckleFace-Regular.ttf') format('truetype');
 //}
-.modal-holder{
-    animation-name: example;
-    animation-duration: 0.3s;
+.modal-holder {
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+@keyframes example {
+  0% {
+    transform: scale(0.5);
   }
-  @keyframes example {
-    0%   {transform: scale(0.5)}
-    100% {transform: scale(1)}
+  100% {
+    transform: scale(1);
   }
+}
 
-  .carousel-item {
-    transition: opacity 0.7s ease !important;
-    position: absolute !important;
-    display: block !important;
-    opacity: 0;
-  }
+.carousel-item {
+  transition: opacity 0.7s ease !important;
+  position: absolute !important;
+  display: block !important;
+  opacity: 0;
+}
 
-  .carousel-item.active {
-    position: relative !important;
-    opacity: 1;
-  }
+.carousel-item.active {
+  position: relative !important;
+  opacity: 1;
+}
 
 //* {
 //  -webkit-box-sizing: border-box;

@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {empty, from, Observable, of} from 'rxjs';
-import {delay} from 'rxjs/operators';
-import {fakeData} from '../../core/helpers/fakeData';
-import {TestDataRequestInterface} from '../../core/interfaces/test.dataRequest.interface';
+import { Injectable } from '@angular/core';
+import { empty, from, Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { fakeData } from '../../core/helpers/fakeData';
+import { TestDataRequestInterface } from '../../core/interfaces/test.dataRequest.interface';
 
 @Injectable({ providedIn: 'root' })
 export class TestService123 {
@@ -11,13 +11,11 @@ export class TestService123 {
   rdNames = ['Rorbert', 'messi', 'kaka', 'tylor', 'shakira'];
   rdAddresses = ['london', 'paris', 'hanoi', 'amstechdam'];
   rdJobs = ['manager', 'cleaner', 'driver', 'singer', 'doctor'];
-  constructor() {
-  }
+  constructor() {}
   randomDate(start, end) {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   }
   getFakedata(request: TestDataRequestInterface) {
-
     // generate unique ID: return '_' + Math.random().toString(36).substr(2, 9);
     // @ts-ignore
     // for (let i = 0; i < 1000; i++) {
@@ -39,9 +37,12 @@ export class TestService123 {
     // }
     console.log(request);
     const total = fakeData.length;
-    const data = fakeData.slice((request.pageIndex - 1) * request.pageSize, request.pageIndex * request.pageSize );
+    const data = fakeData.slice(
+      (request.pageIndex - 1) * request.pageSize,
+      request.pageIndex * request.pageSize
+    );
     // const data = fakeData.slice(0, 20 );
-    const response = {total, data};
+    const response = { total, data };
     console.log(response);
     return of(response).pipe(delay(1000));
     // return empty().pipe(delay(2000));

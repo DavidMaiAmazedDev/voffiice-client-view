@@ -1,17 +1,17 @@
-import {NotifierOptions} from 'angular-notifier';
-import {TestInterface} from '../interfaces/test-interface';
+import { NotifierOptions } from 'angular-notifier';
+import { TestInterface } from '../interfaces/test-interface';
 
 export const CUSTOM_NOTIFIER_OPTIONS: NotifierOptions = {
   position: {
     horizontal: {
       position: 'right',
-      distance: 12
+      distance: 12,
     },
     vertical: {
       position: 'bottom',
       distance: 12,
-      gap: 10
-    }
+      gap: 10,
+    },
   },
   theme: 'material',
   behaviour: {
@@ -19,39 +19,39 @@ export const CUSTOM_NOTIFIER_OPTIONS: NotifierOptions = {
     onClick: 'hide',
     onMouseover: 'pauseAutoHide',
     showDismissButton: true,
-    stacking: 4
+    stacking: 4,
   },
   animations: {
     enabled: true,
     show: {
       preset: 'slide',
       speed: 300,
-      easing: 'ease'
+      easing: 'ease',
     },
     hide: {
       preset: 'fade',
       speed: 300,
       easing: 'ease',
-      offset: 50
+      offset: 50,
     },
     shift: {
       speed: 300,
-      easing: 'ease'
+      easing: 'ease',
     },
-    overlap: 150
-  }
+    overlap: 150,
+  },
 };
 
 export const TEST_LAGECY: TestInterface = {
   prefix: 'legacy root',
   log(msg: string): void {
     console.log(`${this.prefix}(legacy): ${msg}`);
-  }
+  },
 };
 
 export enum userRole {
   User = 'user',
-  Admin = 'admin'
+  Admin = 'admin',
 }
 
 export function getIndexBy(array: Array<{}>, { name, value }): number {
@@ -69,4 +69,3 @@ export function DeepCopyObject(object: any): any {
 export function DeepCopyArray(object: any): any {
   return JSON.parse(JSON.stringify(object));
 }
-

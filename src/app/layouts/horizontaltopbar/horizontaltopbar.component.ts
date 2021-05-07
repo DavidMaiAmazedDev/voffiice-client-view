@@ -10,19 +10,18 @@ import { AuthfakeauthenticationService } from '../../core/services/authfake.serv
 import { DOCUMENT } from '@angular/common';
 
 import { MenuHorizontalItem } from '../../core/models/menu-horizontal.model';
-import {UserProfileService} from '../../core/services/user.service';
+import { UserProfileService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-horizontaltopbar',
   templateUrl: './horizontaltopbar.component.html',
-  styleUrls: ['./horizontaltopbar.component.scss']
+  styleUrls: ['./horizontaltopbar.component.scss'],
 })
 
 /**
  * Horizontal Topbar and navbar specified
  */
 export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
-
   element;
   configData;
   cookieValue;
@@ -41,13 +40,18 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
   ];
 
   // tslint:disable-next-line: max-line-length
-  constructor(@Inject(DOCUMENT) private document: any, private router: Router, private eventService: EventService, private authService: AuthenticationService,
-              private authFackservice: AuthfakeauthenticationService,
-              private userService: UserProfileService,
-              public languageService: LanguageService,
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    private router: Router,
+    private eventService: EventService,
+    private authService: AuthenticationService,
+    private authFackservice: AuthfakeauthenticationService,
+    private userService: UserProfileService,
+    public languageService: LanguageService,
     // tslint:disable-next-line: variable-name
-              public _cookiesService: CookieService) {
-    router.events.subscribe(event => {
+    public _cookiesService: CookieService
+  ) {
+    router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.activateMenu();
       }
@@ -61,15 +65,17 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
 
     this.configData = {
       suppressScrollX: true,
-      wheelSpeed: 0.3
+      wheelSpeed: 0.3,
     };
     this.cookieValue = this._cookiesService.get('lang');
-    const val = this.listLang.filter(x => x.lang === this.cookieValue);
-    this.countryName = val.map(element => element.text);
+    const val = this.listLang.filter((x) => x.lang === this.cookieValue);
+    this.countryName = val.map((element) => element.text);
     if (val.length === 0) {
-      if (this.flagvalue === undefined) { this.valueset = 'assets/images/flags/us.jpg'; }
+      if (this.flagvalue === undefined) {
+        this.valueset = 'assets/images/flags/us.jpg';
+      }
     } else {
-      this.flagvalue = val.map(element => element.flag);
+      this.flagvalue = val.map((element) => element.flag);
     }
   }
 
@@ -109,9 +115,10 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
         nextEl.classList.add('show');
       }
       const nextEl2 = event.target.nextSibling.nextSibling;
-      if (nextEl2) { nextEl2.classList.remove('show'); }
-    }
-    else {
+      if (nextEl2) {
+        nextEl2.classList.remove('show');
+      }
+    } else {
       if (nextEl && nextEl.classList && !nextEl.classList.contains('show')) {
         const parentEl = event.target.parentNode;
         if (parentEl) {
@@ -128,7 +135,6 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.activateMenu();
   }
-
 
   /**
    * remove active and mm-active class
@@ -236,8 +242,10 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
   fullscreen() {
     document.body.classList.toggle('fullscreen-enable');
     if (
-      !document.fullscreenElement && !this.element.mozFullScreenElement &&
-      !this.element.webkitFullscreenElement) {
+      !document.fullscreenElement &&
+      !this.element.mozFullScreenElement &&
+      !this.element.webkitFullscreenElement
+    ) {
       if (this.element.requestFullscreen) {
         this.element.requestFullscreen();
       } else if (this.element.mozRequestFullScreen) {
@@ -321,5 +329,4 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
   hasItems(item: MenuHorizontalItem) {
     return item.subItems !== undefined ? item.subItems.length > 0 : false;
   }
-
 }

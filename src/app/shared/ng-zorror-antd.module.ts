@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 
 import { NzAffixModule } from 'ng-zorro-antd/affix';
@@ -140,8 +139,6 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
     NzWaveModule,
     NzResizableModule,
     NzPipesModule,
-  ]
+  ],
 })
-export class NgZorroAntdModule {
-
-}
+export class NgZorroAntdModule {}

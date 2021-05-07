@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://api.nms.org',
-  socketChannel: 'http://socket-node.nms.org'
+  socketChannel: 'http://socket-node.nms.org',
   // defaultauth: 'firebase',
   // firebaseConfig: {
   //   apiKey: 'AIzaSyBSNQDNzQLJLyJWnG40AO27_TY7gRkqjho',

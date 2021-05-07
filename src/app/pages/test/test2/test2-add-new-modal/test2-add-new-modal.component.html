@@ -1,46 +1,91 @@
-<p-dialog header="{{'component.test2.modal.title' | translate}}" [(visible)]="isShowAddNewModal || isEdit" [modal]="true" [baseZIndex]="2" [focusTrap]="true"
-          [draggable]="false" [resizable]="false" [closable]="false" styleClass="p-dialog-custom">
-
+<p-dialog
+  header="{{ 'component.test2.modal.title' | translate }}"
+  [(visible)]="isShowAddNewModal || isEdit"
+  [modal]="true"
+  [baseZIndex]="2"
+  [focusTrap]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="false"
+  styleClass="p-dialog-custom"
+>
   <div class="form-container">
     <form [formGroup]="testAddNewForm">
-
       <div class="p-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
-          <label for="name">{{'component.test2.modal.name' | translate}}</label>
-          <input id="name" type="text" formControlName="name" pInputText>
-          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
-               class="alert alert-danger">
-
+          <label for="name">{{ 'component.test2.modal.name' | translate }}</label>
+          <input id="name" type="text" formControlName="name" pInputText />
+          <div
+            *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
+            class="alert alert-danger"
+          >
             <div *ngIf="f.name.errors.required">
-              {{ 'validator.required' | translate: {field: 'component.test2.modal.name' | translate} }}
+              {{
+                'validator.required'
+                  | translate: { field: 'component.test2.modal.name' | translate }
+              }}
             </div>
             <div *ngIf="f.name.errors.minlength">
-              {{ 'validator.minLength' | translate: {field: 'component.test2.modal.name' | translate , length: minLengthName} }}
+              {{
+                'validator.minLength'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.name' | translate,
+                        length: minLengthName
+                      }
+              }}
             </div>
 
             <div *ngIf="f.name.errors.maxlength">
-              {{ 'validator.maxLength' | translate: {field: 'component.test2.modal.name' | translate , length: maxLengthName} }}
+              {{
+                'validator.maxLength'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.name' | translate,
+                        length: maxLengthName
+                      }
+              }}
             </div>
-
           </div>
         </div>
         <div class="p-field p-col-12 p-md-6">
-          <label>{{'component.test2.modal.age' | translate}}</label>
-          <input formControlName="age" type="text" pInputText>
-          <div *ngIf="f.age.invalid && (f.age.dirty || f.age.touched)"
-               class="alert alert-danger">
-
+          <label>{{ 'component.test2.modal.age' | translate }}</label>
+          <input formControlName="age" type="text" pInputText />
+          <div *ngIf="f.age.invalid && (f.age.dirty || f.age.touched)" class="alert alert-danger">
             <div *ngIf="f.age.errors?.required">
-              {{ 'validator.required' | translate: {field: 'component.test2.modal.age' | translate} }}
+              {{
+                'validator.required' | translate: { field: 'component.test2.modal.age' | translate }
+              }}
             </div>
             <div *ngIf="f.age.errors?.invalidNumber">
-              {{ 'validator.propertyType' | translate: {field: 'component.test2.modal.age' | translate , type: 'number'} }}
+              {{
+                'validator.propertyType'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.age' | translate,
+                        type: 'number'
+                      }
+              }}
             </div>
             <div *ngIf="f.age.errors?.min">
-              {{ 'validator.minValue' | translate: {field: 'component.test2.modal.age' | translate , value: minAge} }}
+              {{
+                'validator.minValue'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.age' | translate,
+                        value: minAge
+                      }
+              }}
             </div>
             <div *ngIf="f.age.errors?.max">
-              {{ 'validator.maxValue' | translate: {field: 'component.test2.modal.age' | translate , value: maxAge} }}
+              {{
+                'validator.maxValue'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.age' | translate,
+                        value: maxAge
+                      }
+              }}
             </div>
           </div>
         </div>
@@ -48,33 +93,52 @@
 
       <div class="p-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
-          <label for="address">{{'component.test2.modal.address' | translate}}</label>
-          <input id="address" type="text" formControlName="address" pInputText>
+          <label for="address">{{ 'component.test2.modal.address' | translate }}</label>
+          <input id="address" type="text" formControlName="address" pInputText />
 
-          <div *ngIf="f.address.invalid && (f.address.dirty || f.address.touched)"
-               class="alert alert-danger">
-
+          <div
+            *ngIf="f.address.invalid && (f.address.dirty || f.address.touched)"
+            class="alert alert-danger"
+          >
             <div *ngIf="f.address.errors?.required">
-              {{ 'validator.required' | translate: {field: 'component.test2.modal.address' | translate} }}
+              {{
+                'validator.required'
+                  | translate: { field: 'component.test2.modal.address' | translate }
+              }}
             </div>
           </div>
         </div>
         <div class="p-field p-col-12 p-md-6">
-          <label>{{'component.test2.modal.dob' | translate}}</label>
-          <p-calendar class="test-date-time" readonlyInput="true" appendTo="body"
-            formControlName="dob" [showIcon]="true"
+          <label>{{ 'component.test2.modal.dob' | translate }}</label>
+          <p-calendar
+            class="test-date-time"
+            readonlyInput="true"
+            appendTo="body"
+            formControlName="dob"
+            [showIcon]="true"
           >
           </p-calendar>
 
-          <div *ngIf="f.dob.invalid && (f.dob.dirty || f.dob.touched)" [ngStyle]="{'margin-top': '43px'}"
-               class="alert alert-danger">
-
+          <div
+            *ngIf="f.dob.invalid && (f.dob.dirty || f.dob.touched)"
+            [ngStyle]="{ 'margin-top': '43px' }"
+            class="alert alert-danger"
+          >
             <div *ngIf="f.dob.errors?.required">
-              {{ 'validator.required' | translate: {field: 'component.test2.modal.dob' | translate} }}
+              {{
+                'validator.required' | translate: { field: 'component.test2.modal.dob' | translate }
+              }}
             </div>
 
             <div *ngIf="f.dob.errors?.invalidDate">
-              {{ 'validator.format' | translate: {field: 'component.test2.modal.dob' | translate, format: 'dd/mm/yyyy'} }}
+              {{
+                'validator.format'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.dob' | translate,
+                        format: 'dd/mm/yyyy'
+                      }
+              }}
             </div>
           </div>
         </div>
@@ -82,35 +146,60 @@
 
       <div class="p-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
-          <label for="job">{{'component.test2.modal.job' | translate}}</label>
-          <input id="job" type="text" formControlName="job" pInputText>
+          <label for="job">{{ 'component.test2.modal.job' | translate }}</label>
+          <input id="job" type="text" formControlName="job" pInputText />
 
-          <div *ngIf="f.job.invalid && (f.job.dirty || f.job.touched)"
-               class="alert alert-danger">
-
+          <div *ngIf="f.job.invalid && (f.job.dirty || f.job.touched)" class="alert alert-danger">
             <div *ngIf="f.job.errors?.required">
-              {{ 'validator.required' | translate: {field: 'component.test2.modal.job' | translate} }}
+              {{
+                'validator.required' | translate: { field: 'component.test2.modal.job' | translate }
+              }}
             </div>
           </div>
         </div>
         <div class="p-field p-col-12 p-md-6">
-          <label>{{'component.test2.modal.salary' | translate}}</label>
-          <input formControlName="salary" type="text" pInputText>
+          <label>{{ 'component.test2.modal.salary' | translate }}</label>
+          <input formControlName="salary" type="text" pInputText />
 
-          <div *ngIf="f.salary.invalid && (f.salary.dirty || f.salary.touched)"
-               class="alert alert-danger">
-
+          <div
+            *ngIf="f.salary.invalid && (f.salary.dirty || f.salary.touched)"
+            class="alert alert-danger"
+          >
             <div *ngIf="f.salary.errors?.required">
-              {{ 'validator.required' | translate: {field: 'component.test2.modal.salary' | translate} }}
+              {{
+                'validator.required'
+                  | translate: { field: 'component.test2.modal.salary' | translate }
+              }}
             </div>
             <div *ngIf="f.salary.errors?.invalidNumber">
-              {{ 'validator.propertyType' | translate: {field: 'component.test2.modal.salary' | translate , type: 'number'} }}
+              {{
+                'validator.propertyType'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.salary' | translate,
+                        type: 'number'
+                      }
+              }}
             </div>
             <div *ngIf="f.salary.errors?.min">
-              {{ 'validator.minValue' | translate: {field: 'component.test2.modal.salary' | translate , value: minSalary} }}
+              {{
+                'validator.minValue'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.salary' | translate,
+                        value: minSalary
+                      }
+              }}
             </div>
             <div *ngIf="f.salary.errors?.max">
-              {{ 'validator.maxValue' | translate: {field: 'component.test2.modal.salary' | translate , value: maxSalary} }}
+              {{
+                'validator.maxValue'
+                  | translate
+                    : {
+                        field: 'component.test2.modal.salary' | translate,
+                        value: maxSalary
+                      }
+              }}
             </div>
           </div>
         </div>
@@ -119,7 +208,16 @@
   </div>
 
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="submit()" label="{{'btn.save' | translate}}" class="p-button-text"></p-button>
-    <p-button icon="pi pi-times" (click)="close()" label="{{'btn.cancel' | translate}}"></p-button>
+    <p-button
+      icon="pi pi-check"
+      (click)="submit()"
+      label="{{ 'btn.save' | translate }}"
+      class="p-button-text"
+    ></p-button>
+    <p-button
+      icon="pi pi-times"
+      (click)="close()"
+      label="{{ 'btn.cancel' | translate }}"
+    ></p-button>
   </ng-template>
 </p-dialog>

@@ -1,168 +1,231 @@
 <!--<app-loader></app-loader>-->
 <div class="container-fluid">
-  <app-page-title [title]="breadCrumbItems[1].label" [breadcrumbItems]="breadCrumbItems"></app-page-title>
-<!--  <button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button>-->
-<!--  <h1>{{testDate | relativeTime }}</h1>-->
+  <app-page-title
+    [title]="breadCrumbItems[1].label"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!--  <button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button>-->
+  <!--  <h1>{{testDate | relativeTime }}</h1>-->
 
+  <div nz-row class="manipulation-container">
+    <div nz-row [nzGutter]="4" class="left-side" style="float: left">
+      <div nz-col class="btn-add-new">
+        <button nz-button nzType="primary" (click)="showModalAddNew()">Add New</button>
+      </div>
+      <!--    <div nz-col class="btn-filter">-->
+      <!--      <button nz-button nzType="primary" (click)="showModalFilter($event); $event.stopPropagation()">-->
+      <!--        Filter-->
+      <!--      </button>-->
+      <!--    </div>-->
+      <div nz-col class="input-search">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+          <input
+            [(ngModel)]="overallStringSearch"
+            type="text"
+            nz-input
+            placeholder="input search text"
+          />
+        </nz-input-group>
+      </div>
+      <div nz-col class="btn-filter">
+        <button
+          nzType="primary"
+          [(nzPopoverVisible)]="isShowModalFilter"
+          (nzPopoverVisibleChange)="change($event)"
+          nzPopoverTrigger="click"
+          nz-button
+          nz-popover
+          nzPopoverTitle="Title"
+          [nzPopoverContent]="filterTemplate"
+          nzPopoverPlacement="bottom"
+        >
+          Filter
+        </button>
+      </div>
+    </div>
 
-<div nz-row class="manipulation-container">
-  <div nz-row [nzGutter]="4" class="left-side" style="float: left">
-    <div nz-col class="btn-add-new">
-      <button nz-button nzType="primary" (click)="showModalAddNew()">Add New</button>
-    </div>
-<!--    <div nz-col class="btn-filter">-->
-<!--      <button nz-button nzType="primary" (click)="showModalFilter($event); $event.stopPropagation()">-->
-<!--        Filter-->
-<!--      </button>-->
-<!--    </div>-->
-    <div nz-col class="input-search">
-      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-        <input [(ngModel)]="overallStringSearch" type="text" nz-input placeholder="input search text" />
-      </nz-input-group>
-    </div>
-    <div nz-col class="btn-filter">
-      <button nzType="primary"
-              [(nzPopoverVisible)]="isShowModalFilter"
-              (nzPopoverVisibleChange)="change($event)"
-              nzPopoverTrigger="click" nz-button nz-popover nzPopoverTitle="Title"
-              [nzPopoverContent]="filterTemplate" nzPopoverPlacement="bottom">
-        Filter
-      </button>
+    <div nz-row [nzGutter]="4" class="right-side">
+      <div nz-col class="change-view-columns">
+        <button
+          nz-button
+          nzType="primary"
+          nz-popover
+          nzPopoverTitle="Title"
+          [(nzPopoverVisible)]="visibleViewMoreColumns"
+          (nzPopoverVisibleChange)="change($event)"
+          nzPopoverPlacement="bottom"
+          nzPopoverTrigger="click"
+          [nzPopoverContent]="changeColumnViewTemplate"
+          class="btn-view-more-columns"
+        >
+          View Columns
+        </button>
+      </div>
+
+      <div nz-col class="export">
+        <button nz-button (click)="doExport()">Export</button>
+      </div>
+
+      <div nz-col class="delete-record">
+        <button nz-button nzType="primary" (click)="deleteMultipleRecord()" nzDanger>Delete</button>
+      </div>
     </div>
   </div>
 
-  <div nz-row [nzGutter]="4" class="right-side">
+  <!--(nzQueryParams) ="callApi($event)"-->
+  <nz-table
+    #fixedTable
+    [nzData]="listOfData"
+    [nzScroll]="{ x: '1100px', y: '500px' }"
+    [nzLoading]="isLoading"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    (nzPageIndexChange)="pageIndexChange($event)"
+    (nzPageSizeChange)="pageSizeChange($event)"
+    [nzPageSizeOptions]="pageOption"
+    [nzShowQuickJumper]="true"
+    [nzNoResult]="noResult"
+    [nzTotal]="total"
+    [nzShowSizeChanger]="true"
+    nzBordered
+    [nzFrontPagination]="false"
+    [nzFooter]="footer"
+    [nzShowTotal]="rangeTemplate"
+  >
+    <thead [ngStyle]="{ background: 'red' }">
+      <tr>
+        <!--    <ng-container *ngFor="let colName of listColumnNames">-->
+        <!--      <th nzLeft>{{colName}}</th>-->
+        <!--    </ng-container>-->
+        <th
+          [nzSelections]="listOfSelection"
+          [(nzChecked)]="checked"
+          [nzIndeterminate]="indeterminate"
+          (nzCheckedChange)="onAllChecked($event)"
+        ></th>
+        <th nzLeft></th>
+        <ng-container *ngFor="let col of defaultDisplayColumn">
+          <th
+            nzColumnKey="{{ col }}"
+            [nzSortOrder]="null"
+            [nzSortFn]="true"
+            (nzSortOrderChange)="SortOrderChange(col, $event)"
+          >
+            {{ col }}
+          </th>
+          <!--      <th (click)="onToggleSort(col); $event.preventDefault();">{{col}}</th>-->
+          <!--      <i nz-icon nzType="caret-up" nzTheme="outline"></i>-->
+          <!--      <i *ngIf="!sort.asc" nz-icon nzType="caret-down" nzTheme="outline"></i>-->
+          <!--      <img-->
+          <!--        *ngIf="sort.field === col"-->
+          <!--        class="sort-icon"-->
+          <!--        [src]="sort.asc ? '/assets/images/icons/sort-down.svg' : '/assets/images/icons/sort-up.svg'"-->
+          <!--        alt="sort"-->
+          <!--        (click)="onToggleSort(col)"-->
+          <!--      />-->
+        </ng-container>
+        <th nzRight>action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of fixedTable.data; let i = index">
+        <td
+          [nzChecked]="setOfCheckedId.has(data.id)"
+          (nzCheckedChange)="onItemChecked(data.id, $event)"
+        ></td>
+        <td nzLeft>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+        <ng-container *ngFor="let col of defaultDisplayColumn">
+          <!--      <ng-container *ngIf="col.checked">-->
+          <td *ngIf="col !== 'dob'">{{ data[col] }}</td>
+          <td *ngIf="col === 'dob'">{{ data[col] | date: 'dd/mm/yyyy' }}</td>
+          <!--      </ng-container>-->
+        </ng-container>
+        <td nzRight>
+          <div class="row">
+            <div class="col-4">
+              <i
+                class="icon-edit"
+                nz-icon
+                nzType="edit"
+                nzTheme="twotone"
+                (click)="editRecord(data)"
+              ></i>
+            </div>
+            <div class="col-4">
+              <i
+                class="icon-delete"
+                nz-icon
+                nzType="delete"
+                nzTheme="twotone"
+                (click)="deleteSingleRecord(data.id)"
+              ></i>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 
-    <div nz-col class="change-view-columns">
-      <button
-        nz-button
-        nzType="primary"
-        nz-popover
-        nzPopoverTitle="Title"
-        [(nzPopoverVisible)]="visibleViewMoreColumns"
-        (nzPopoverVisibleChange)="change($event)"
-        nzPopoverPlacement="bottom"
-        nzPopoverTrigger="click"
-        [nzPopoverContent]="changeColumnViewTemplate"
-        class="btn-view-more-columns"
+  <!--<nz-pagination class="pagination" nzShowSizeChanger nzShowQuickJumper [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize"-->
+  <!--               (nzPageSizeChange)="pageSizeChanged($event)" (nzPageIndexChange)="pageIndexChanged($event)"-->
+  <!--               [nzPageSizeOptions]="pageOption">-->
+  <!--</nz-pagination>-->
+
+  <ng-template #rangeTemplate let-range="range" let-total>
+    {{ range[0] }}-{{ range[1] }} of {{ total }} items
+  </ng-template>
+  <ng-template #filterTemplate class="filter-template">
+    <app-test-filter
+      *ngIf="isShowModalFilter"
+      [valueFilter]="filterBindingValue"
+      (searchRequest)="doSearch($event)"
+      (hide)="onHideFilterModal()"
+    ></app-test-filter>
+  </ng-template>
+  <!--<app-test-filter *ngIf="isShowModalFilter" [X]="currentX" [Y]="currentY" [width]="containerWidth" (hideFilterModal)="hideFilterModal()"></app-test-filter>-->
+  <app-test-add-new-modal
+    *ngIf="isAddNew || isEdit"
+    [testDataElement]="testDataElement"
+    [isAddNew]="isAddNew"
+    [isEdit]="isEdit"
+    (hide)="hideModalAddNew()"
+    (newData)="onAddNew($event)"
+  ></app-test-add-new-modal>
+  <ng-template #suffixIconButton>
+    <button nz-button nzType="primary" nzSearch (click)="overallSearch()">
+      <i nz-icon nzType="search"></i>
+    </button>
+  </ng-template>
+
+  <ng-template #changeColumnViewTemplate>
+    <nz-checkbox-wrapper style="width: 100%" (nzOnChange)="displayColumn($event)">
+      <div
+        nz-row
+        nzJustify="center"
+        [nzGutter]="8"
+        [ngStyle]="{ 'margin-bottom': '16px', 'margin-top': '0px' }"
       >
-        View Columns
-      </button>
-    </div>
-
-    <div nz-col class="export">
-      <button
-        nz-button
-        (click)="doExport()"
-      >
-        Export
-      </button>
-    </div>
-
-    <div nz-col class="delete-record">
-      <button
-        nz-button
-        nzType="primary"
-        (click)="deleteMultipleRecord()"
-        nzDanger
-      >
-        Delete
-      </button>
-    </div>
-
-  </div>
-
-</div>
-
-<!--(nzQueryParams) ="callApi($event)"-->
-<nz-table #fixedTable [nzData]="listOfData" [nzScroll]="{ x: '1100px', y: '500px' }" [nzLoading]="isLoading"
-          [nzPageSize]="pageSize"
-          [nzPageIndex]="pageIndex"
-          (nzPageIndexChange) = "pageIndexChange($event)"
-          (nzPageSizeChange) = "pageSizeChange($event)"
-          [nzPageSizeOptions]="pageOption" [nzShowQuickJumper] = "true"
-          [nzNoResult] = "noResult"
-          [nzTotal] = "total"
-          [nzShowSizeChanger]="true"
-          nzBordered [nzFrontPagination]="false"
-          [nzFooter] ="footer" [nzShowTotal]="rangeTemplate">
-  <thead [ngStyle]="{'background':'red'}">
-  <tr>
-<!--    <ng-container *ngFor="let colName of listColumnNames">-->
-<!--      <th nzLeft>{{colName}}</th>-->
-<!--    </ng-container>-->
-    <th [nzSelections]="listOfSelection"
-        [(nzChecked)]="checked"
-        [nzIndeterminate]="indeterminate"
-        (nzCheckedChange)="onAllChecked($event)"></th>
-    <th nzLeft></th>
-    <ng-container *ngFor="let col of defaultDisplayColumn">
-      <th nzColumnKey="{{col}}" [nzSortOrder]="null" [nzSortFn] = "true" (nzSortOrderChange)="SortOrderChange(col, $event)">{{col}}</th>
-<!--      <th (click)="onToggleSort(col); $event.preventDefault();">{{col}}</th>-->
-<!--      <i nz-icon nzType="caret-up" nzTheme="outline"></i>-->
-<!--      <i *ngIf="!sort.asc" nz-icon nzType="caret-down" nzTheme="outline"></i>-->
-<!--      <img-->
-<!--        *ngIf="sort.field === col"-->
-<!--        class="sort-icon"-->
-<!--        [src]="sort.asc ? '/assets/images/icons/sort-down.svg' : '/assets/images/icons/sort-up.svg'"-->
-<!--        alt="sort"-->
-<!--        (click)="onToggleSort(col)"-->
-<!--      />-->
-    </ng-container>
-    <th nzRight>action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let data of fixedTable.data; let i = index">
-    <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
-    <td nzLeft>{{(pageIndex -1) * pageSize + i + 1}}</td>
-    <ng-container *ngFor="let col of defaultDisplayColumn">
-<!--      <ng-container *ngIf="col.checked">-->
-      <td *ngIf="col !== 'dob'">{{ data[col] }}</td>
-      <td *ngIf="col === 'dob'">{{ data[col] | date : 'dd/mm/yyyy'}}</td>
-<!--      </ng-container>-->
-    </ng-container>
-    <td nzRight>
-      <div class="row">
-        <div class="col-4">
-          <i class="icon-edit" nz-icon nzType="edit" nzTheme="twotone" (click)="editRecord(data)"></i>
-        </div>
-        <div class="col-4">
-          <i class="icon-delete" nz-icon nzType="delete" nzTheme="twotone" (click)="deleteSingleRecord(data.id)"></i>
+        <!--      nzValue="{{col.value}}" [(ngModel)]="col.checked"-->
+        <div
+          [ngStyle]="{ 'margin-top': '8px' }"
+          nz-col
+          nzSpan="8"
+          *ngFor="let col of listColumnNames"
+        >
+          <label
+            nz-checkbox
+            nzValue="{{ col }}"
+            [ngModel]="defaultDisplayColumn.indexOf(col) !== -1"
+            >{{ col }}</label
+          >
         </div>
       </div>
-    </td>
-  </tr>
-  </tbody>
-</nz-table>
-
-<!--<nz-pagination class="pagination" nzShowSizeChanger nzShowQuickJumper [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize"-->
-<!--               (nzPageSizeChange)="pageSizeChanged($event)" (nzPageIndexChange)="pageIndexChanged($event)"-->
-<!--               [nzPageSizeOptions]="pageOption">-->
-<!--</nz-pagination>-->
-
-<ng-template #rangeTemplate let-range="range" let-total> {{ range[0] }}-{{ range[1] }} of {{ total }} items </ng-template>
-<ng-template #filterTemplate class="filter-template">
-  <app-test-filter *ngIf="isShowModalFilter" [valueFilter]= "filterBindingValue" (searchRequest)="doSearch($event)" (hide)="onHideFilterModal()"></app-test-filter>
-</ng-template>
-<!--<app-test-filter *ngIf="isShowModalFilter" [X]="currentX" [Y]="currentY" [width]="containerWidth" (hideFilterModal)="hideFilterModal()"></app-test-filter>-->
-<app-test-add-new-modal *ngIf="isAddNew || isEdit" [testDataElement]="testDataElement"  [isAddNew]="isAddNew" [isEdit]="isEdit" (hide)="hideModalAddNew()"  (newData)="onAddNew($event)"></app-test-add-new-modal>
-<ng-template #suffixIconButton>
-  <button nz-button nzType="primary" nzSearch (click)="overallSearch()"><i nz-icon nzType="search"></i></button>
-</ng-template>
-
-<ng-template #changeColumnViewTemplate>
-  <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="displayColumn($event)">
-    <div nz-row nzJustify="center" [nzGutter]="8"  [ngStyle]="{'margin-bottom':'16px', 'margin-top':'0px'}" >
-<!--      nzValue="{{col.value}}" [(ngModel)]="col.checked"-->
-      <div [ngStyle]="{'margin-top':'8px'}" nz-col nzSpan="8" *ngFor="let col of listColumnNames"><label nz-checkbox nzValue="{{col}}" [ngModel]="defaultDisplayColumn.indexOf(col) !==-1" >{{col}}</label></div>
-    </div>
-  </nz-checkbox-wrapper>
-<!--  <div nz-row>-->
-<!--  <nz-checkbox-group [(ngModel)]="defaultDisplayColumn" (ngModelChange)="displayColumn(defaultDisplayColumn)"></nz-checkbox-group>-->
-<!--  </div>-->
-  <br />
-  <a [ngStyle]="{'float':'right'}" (click)="clickMe()">Close</a>
-  <br />
-</ng-template>
+    </nz-checkbox-wrapper>
+    <!--  <div nz-row>-->
+    <!--  <nz-checkbox-group [(ngModel)]="defaultDisplayColumn" (ngModelChange)="displayColumn(defaultDisplayColumn)"></nz-checkbox-group>-->
+    <!--  </div>-->
+    <br />
+    <a [ngStyle]="{ float: 'right' }" (click)="clickMe()">Close</a>
+    <br />
+  </ng-template>
 </div>

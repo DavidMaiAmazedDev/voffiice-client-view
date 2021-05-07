@@ -8,9 +8,8 @@ describe('SystemConfigurationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SystemConfigurationComponent ]
-    })
-    .compileComponents();
+      declarations: [SystemConfigurationComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,15 +1,29 @@
+<p-button
+  label="{{ 'btn.columns' | translate }}"
+  icon="pi pi-search"
+  (click)="getDefaultDisplayColumn(listColumnNames); op.toggle($event)"
+  styleClass="p-button-custom"
+></p-button>
 
-<p-button label="{{'btn.columns' | translate}}" icon="pi pi-search" (click)="getDefaultDisplayColumn(listColumnNames) ;op.toggle($event)" styleClass="p-button-custom"></p-button>
-
-<p-overlayPanel #op [showCloseIcon]="false" [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'100ms'">
+<p-overlayPanel
+  #op
+  [showCloseIcon]="false"
+  [showTransitionOptions]="'200ms'"
+  [hideTransitionOptions]="'100ms'"
+>
   <ng-template pTemplate>
     <div class="selection-container">
-      <ng-container *ngFor="let item of listColumnNames; let i = index;">
+      <ng-container *ngFor="let item of listColumnNames; let i = index">
         <div class="p-field-checkbox">
-<!--          [(ngModel)]="selectedCities"-->
-<!--          [(ngModel)]="defaultDisplayColumn.indexOf(item) !==-1"-->
-          <p-checkbox name="group1" value="{{item}}" [(ngModel)]="selectedColumns" (onChange)="upDateColumnViews()"></p-checkbox>
-          <label>{{item}}</label>
+          <!--          [(ngModel)]="selectedCities"-->
+          <!--          [(ngModel)]="defaultDisplayColumn.indexOf(item) !==-1"-->
+          <p-checkbox
+            name="group1"
+            value="{{ item }}"
+            [(ngModel)]="selectedColumns"
+            (onChange)="upDateColumnViews()"
+          ></p-checkbox>
+          <label>{{ item }}</label>
         </div>
       </ng-container>
     </div>

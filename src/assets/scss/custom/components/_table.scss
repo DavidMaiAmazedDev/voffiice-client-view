@@ -4,15 +4,16 @@
 
 .table {
   th {
-      font-weight: $font-weight-bold;
+    font-weight: $font-weight-bold;
   }
 }
 
 //Table centered
 .table-centered {
-  td,th {
-      vertical-align: middle !important;
-      text-align: center !important;
+  td,
+  th {
+    vertical-align: middle !important;
+    text-align: center !important;
   }
   th {
     height: 32px !important;
@@ -26,7 +27,8 @@
 }
 
 .table-nowrap {
-  th, td {
+  th,
+  td {
     white-space: nowrap;
   }
 }

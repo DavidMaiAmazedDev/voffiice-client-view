@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {AuthenticationService} from '../services/auth.service';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { AuthenticationService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserRoleGuard implements CanActivate {
@@ -11,12 +11,7 @@ export class UserRoleGuard implements CanActivate {
     console.log(route);
     console.log(user);
 
-    if (
-      user &&
-      route.data &&
-      route.data.roles &&
-      route.data.roles.includes(user.role)
-    ) {
+    if (user && route.data && route.data.roles && route.data.roles.includes(user.role)) {
       return true;
     } else {
       console.log('you have no permission to access this page!!!');

@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NgbCollapseModule, NgbDatepickerModule, NgbTimepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbCollapseModule,
+  NgbDatepickerModule,
+  NgbTimepickerModule,
+  NgbDropdownModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { ClickOutsideModule } from 'ng-click-outside';
 
 import { PagetitleComponent } from './pagetitle/pagetitle.component';
@@ -11,7 +16,12 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [PagetitleComponent, LoaderComponent, ConfirmationDialogComponent, PageNotFoundComponent],
+  declarations: [
+    PagetitleComponent,
+    LoaderComponent,
+    ConfirmationDialogComponent,
+    PageNotFoundComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,8 +29,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NgbCollapseModule,
     NgbDatepickerModule,
     NgbTimepickerModule,
-    NgbDropdownModule
+    NgbDropdownModule,
   ],
-  exports: [PagetitleComponent, LoaderComponent]
+  exports: [PagetitleComponent, LoaderComponent],
 })
-export class UIModule { }
+export class UIModule {}

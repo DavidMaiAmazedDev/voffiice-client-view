@@ -1,12 +1,11 @@
-import {Injectable} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import { Injectable } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import * as moment from 'moment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomValidationService {
-
   patternValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
       if (!control.value) {
@@ -36,11 +35,11 @@ export class CustomValidationService {
       } else {
         confirmPasswordControl.setErrors(null);
       }
-    }
+    };
   }
 
   userNameValidator(userControl: AbstractControl) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         if (this.validateUserName(userControl.value)) {
           resolve({ userNameNotAvailable: true });
@@ -52,8 +51,8 @@ export class CustomValidationService {
   }
 
   validateUserName(userName: string) {
-    const UserList = ['admin', 'supper-user' ];
-    return (UserList.indexOf(userName) > -1);
+    const UserList = ['admin', 'supper-user'];
+    return UserList.indexOf(userName) > -1;
   }
 
   numberValidator(): ValidatorFn {
@@ -67,13 +66,17 @@ export class CustomValidationService {
     };
   }
 
-  dateRangeValidator(fromDateField: string, toDateField: string, errorName: string = 'fromToDate'): ValidatorFn {
+  dateRangeValidator(
+    fromDateField: string,
+    toDateField: string,
+    errorName: string = 'fromToDate'
+  ): ValidatorFn {
     return (formGroup: AbstractControl): { [key: string]: boolean } | null => {
       const fromDate = formGroup.get(fromDateField).value;
       const toDate = formGroup.get(toDateField).value;
       // Ausing the fromDate and toDate are numbers. In not convert them first after null check
-      if ((fromDate !== null && toDate !== null) && fromDate > toDate) {
-        return {[errorName]: true};
+      if (fromDate !== null && toDate !== null && fromDate > toDate) {
+        return { [errorName]: true };
       }
       return null;
     };

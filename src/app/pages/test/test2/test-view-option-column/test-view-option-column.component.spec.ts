@@ -8,9 +8,8 @@ describe('TestViewOptionColumnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TestViewOptionColumnComponent ]
-    })
-    .compileComponents();
+      declarations: [TestViewOptionColumnComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

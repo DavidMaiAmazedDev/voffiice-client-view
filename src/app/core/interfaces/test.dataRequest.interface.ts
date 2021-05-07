@@ -1,4 +1,4 @@
-import {BaseRequestInterface} from './base-request.interface';
+import { BaseRequestInterface } from './base-request.interface';
 
 export interface Sort {
   field: string;
@@ -10,8 +10,7 @@ export interface Filter {
   value: any;
 }
 
-
-export interface TestDataRequestInterface extends BaseRequestInterface{
+export interface TestDataRequestInterface extends BaseRequestInterface {
   sort: Sort;
   filter: Filter[];
   overall: string;
