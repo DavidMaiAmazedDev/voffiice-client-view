@@ -13,6 +13,7 @@ import { DeepCopyArray } from '../../../core/helpers/utils';
 import { TestService123 } from '../../../services/bases/test.service';
 import { TestModel, TestSearchModel } from '../../../core/models/test-model';
 import { ExportService } from '../../../core/services/export.service';
+import {fakeData} from '../../../core/helpers/fakeData';
 
 @Component({
   selector: 'app-test2',
@@ -220,6 +221,6 @@ export class Test2Component implements OnInit {
   }
 
   doExport() {
-    // this.exportService.exportAsExcelFile(fakeData, 'sample');
+    this.exportService.exportAsExcelFile(fakeData, 'sample');
   }
 }
