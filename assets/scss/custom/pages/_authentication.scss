@@ -1,7 +1,6 @@
-// 
+//
 // authentication.scss
 //
-
 
 // authentication home icon
 .home-btn {
@@ -9,7 +8,6 @@
   top: 15px;
   right: 25px;
 }
-
 
 // auth 2
 
@@ -27,7 +25,6 @@
   background-color: $card-bg;
 }
 
-
 // authentication full page
 
 .auth-full-bg {
@@ -38,9 +35,8 @@
     height: 100vh;
   }
 
-
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 300px;
     height: 300px;
@@ -48,7 +44,7 @@
   }
 
   .bg-overlay {
-    background: url("../../../images/bg-auth-overlay.png");
+    background: url('../../../images/bg-auth-overlay.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

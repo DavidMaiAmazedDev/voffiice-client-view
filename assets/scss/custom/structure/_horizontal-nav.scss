@@ -18,7 +18,6 @@
   }
 
   .navbar-nav {
-
     .nav-link {
       font-size: 14px;
       position: relative;
@@ -53,7 +52,7 @@
 
     .dropdown {
       &.active {
-        >a {
+        > a {
           color: $sidebar-menu-item-active-color;
           background-color: transparent;
         }
@@ -63,9 +62,7 @@
 }
 
 @include media-breakpoint-up(xl) {
-
-  body[data-layout="horizontal"] {
-
+  body[data-layout='horizontal'] {
     .container-fluid,
     .navbar-header {
       max-width: 99%;
@@ -86,13 +83,12 @@
     }
 
     .dropdown-item {
-      padding: .5rem 1.5rem;
+      padding: 0.5rem 1.5rem;
       min-width: 180px;
     }
 
     .dropdown {
       &.mega-dropdown {
-
         // position: static;
         .mega-dropdown-menu {
           left: 0px;
@@ -117,20 +113,20 @@
             position: absolute;
             top: 0;
             left: 100%;
-            display: none
+            display: none;
           }
         }
       }
 
       &:hover {
-        >.dropdown-menu {
+        > .dropdown-menu {
           display: block;
         }
       }
     }
 
-    .dropdown:hover>.dropdown-menu>.dropdown:hover>.dropdown-menu {
-      display: block
+    .dropdown:hover > .dropdown-menu > .dropdown:hover > .dropdown-menu {
+      display: block;
     }
   }
 
@@ -146,16 +142,16 @@
     border-color: initial;
     border-style: solid;
     border-width: 0 0 1px 1px;
-    content: "";
-    height: .4em;
+    content: '';
+    height: 0.4em;
     display: inline-block;
     right: 5px;
     top: 50%;
     margin-left: 10px;
     transform: rotate(-45deg) translateY(-50%);
     transform-origin: top;
-    transition: all .3s ease-out;
-    width: .4em;
+    transition: all 0.3s ease-out;
+    width: 0.4em;
   }
 }
 
@@ -179,17 +175,17 @@
 @include media-breakpoint-down(md) {
   .navbar-brand-box {
     .logo-dark {
-        display: $display-block;
+      display: $display-block;
 
-        span.logo-sm {
-            display: $display-block;
-        }
+      span.logo-sm {
+        display: $display-block;
+      }
     }
 
     .logo-light {
-        display: $display-none;
+      display: $display-none;
     }
-}
+  }
 
   .topnav {
     max-height: 360px;
@@ -212,9 +208,9 @@
           width: auto;
 
           .row {
-              margin: 0px;
+            margin: 0px;
           }
-      }
+        }
       }
 
       .dropdown-item {
@@ -237,24 +233,21 @@
   }
 }
 
-
 @include media-breakpoint-up(lg) {
-
-  body[data-layout="horizontal"][data-topbar="light"] {
+  body[data-layout='horizontal'][data-topbar='light'] {
     .navbar-brand-box {
       .logo-dark {
-          display: $display-block;
+        display: $display-block;
       }
 
       .logo-light {
-          display: $display-none;
+        display: $display-none;
       }
-  }
+    }
     .topnav {
       background-color: $primary;
 
       .navbar-nav {
-
         .nav-link {
           color: rgba($white, 0.5);
 
@@ -264,9 +257,9 @@
           }
         }
 
-        >.dropdown {
+        > .dropdown {
           &.active {
-            >a {
+            > a {
               color: rgba($white, 0.9) !important;
             }
           }
@@ -278,7 +271,7 @@
 
 // Colored Topbar
 
-body[data-layout="horizontal"][data-topbar="colored"] {
+body[data-layout='horizontal'][data-topbar='colored'] {
   #page-topbar {
     background-color: $primary;
     box-shadow: none;
@@ -293,7 +286,6 @@ body[data-layout="horizontal"][data-topbar="colored"] {
   }
 
   .app-search {
-
     .form-control {
       background-color: rgba($topbar-search-bg, 0.07);
       color: $white;
@@ -336,7 +328,6 @@ body[data-layout="horizontal"][data-topbar="colored"] {
       background-color: $primary;
 
       .navbar-nav {
-
         .nav-link {
           color: rgba($white, 0.5);
 
@@ -346,9 +337,9 @@ body[data-layout="horizontal"][data-topbar="colored"] {
           }
         }
 
-        >.dropdown {
+        > .dropdown {
           &.active {
-            >a {
+            > a {
               color: rgba($white, 0.9) !important;
             }
           }
